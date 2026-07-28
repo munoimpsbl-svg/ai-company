@@ -1,0 +1,29 @@
+# Prompt
+
+## Daily Brief
+- 最終日の朝の投稿。
+- 17日まで海外出張。
+- 単発の写真紹介ではなく、MIKUの海外出張時の自然な一コマ。
+
+## Character Lock
+- MIKU本人感を優先。
+- 35歳の成人日本人女性。
+- マスク着用必須。
+- スマホが写る場合は白で固定。
+- 体型は B95 / W60 / H95。
+
+## Outfit
+- navy blazer
+- white blouse
+- beige skirt
+- black shoulder bag
+- white mask
+- white smartphone
+
+## Scene
+- overseas hotel room, hotel closet, hotel lobby, hotel corridor, taxi pickup area
+- final morning before checkout or departure
+- no readable signs, logos, or broken text
+
+## Priority
+- 優先候補: `02` `03` `05`

@@ -1,0 +1,30 @@
+services:
+  - type: web
+    name: ai-company-editor-dashboard
+    env: python
+    plan: starter
+    buildCommand: pip install -r requirements.txt
+    startCommand: streamlit run main.py --server.address 0.0.0.0 --server.port $PORT --server.headless true
+    envVars:
+      - key: AI_COMPANY_NON_INTERACTIVE
+        value: "1"
+      - key: DASHBOARD_PASSWORD
+        sync: false
+      - key: P003_WORDPRESS_URL
+        sync: false
+      - key: P003_WORDPRESS_ADMIN_URL
+        sync: false
+      - key: P004_WORDPRESS_URL
+        sync: false
+      - key: AI_COMPANY_DRIVE_ROOT_ID
+        sync: false
+      - key: GOOGLE_DRIVE_OAUTH_TOKEN_JSON
+        sync: false
+      - key: GOOGLE_SEARCH_CONSOLE_TOKEN_JSON
+        sync: false
+      - key: GOOGLE_GA4_TOKEN_JSON
+        sync: false
+      - key: SEARCH_CONSOLE_SITE_URL
+        sync: false
+      - key: GA4_PROPERTY_ID
+        sync: false

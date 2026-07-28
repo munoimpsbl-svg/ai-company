@@ -1,0 +1,27 @@
+# Prompt
+
+## Daily Brief
+- 帰宅後は部屋で休む。
+- 部屋着は任せる。
+- 外出服とは混ぜない。
+- 部屋では靴を履かない。
+
+## Character Lock
+- RIO本人感を優先。
+- 22歳の成人日本人女性。
+- 体型は B90 / W60 / H90。
+
+## Outfit
+- loose white or pale gray T-shirt
+- black lounge shorts
+- barefoot or feet not visible
+- no shoes indoors
+
+## Scene
+- simple one-room apartment
+- beige bedding
+- desk, shelf, manga
+- no readable titles or logos
+
+## Priority
+- 優先候補: `01` `02`

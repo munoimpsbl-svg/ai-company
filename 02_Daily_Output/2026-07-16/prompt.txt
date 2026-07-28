@@ -1,0 +1,24 @@
+# 2026-07-16 Generation Prompt Summary
+
+## RIO
+- Source: 2026-07-16 Daily_Brief.md and `RIO_BASE_REFERENCE.md`.
+- Character lock: 22-year-old adult Japanese woman, RIO base reference from 2026-07-12, almond eyes, natural eye corners, black long hair with bangs, natural mouth, avoid idol/AI-beauty drift.
+- Body lock: B90 / W60 / H90, natural clothed body volume.
+- Theme: going to school in summer.
+- Direction: increase summer clothing variations, keep high diagonal selfie angle family, increase expressions.
+- Outfit range: fitted ribbed sleeveless top, fitted T-shirt, sleeveless knit, open shirt over tank top, short pants, shoulder/crossbody bag.
+- NG: sweat/wet hair, gym clothes, readable background text, logos, broken limbs/hands, different-person drift.
+- Shopping fixed outfit: plain white summer T-shirt, light denim shorts, small black shoulder bag, simple sneakers. Same-day set must not mix outfits.
+
+## MIKU
+- Source: 2026-07-16 Daily_Brief.md and MIKU reference images.
+- Character lock: 35-year-old adult Japanese woman, mature manager atmosphere, almond eyes, natural eye corners, rounded cheeks, dark long hair with natural bangs.
+- Required: mask worn in every image.
+- Body lock: B95 / W60 / H95, natural clothed volume.
+- Theme: overseas business trip continues; include evening business dinner photos.
+- Direction: maintain clothing/accessory continuity.
+- Outfit continuity: navy blazer, white blouse, beige skirt/slacks, black shoulder bag, slim wristwatch.
+- Scene range: hotel/airport transfer, hotel elevator mirror selfie, business dinner table, restaurant entrance, after-dinner hotel return.
+- NG: unreadable/broken signs, logos, named locations, broken mirror reflection, impossible hands, distorted neck/shoulders/body, AI color cast.
+- Phone rule: if MIKU's smartphone is visible, it must be white. Black phone is NG.
+- Transfer fixed excludes ambiguous airplane/lounge seat images.

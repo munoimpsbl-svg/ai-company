@@ -1,0 +1,67 @@
+{
+  "file_name": "2026-07-25_RIO_night_drive_sleep_03.png",
+  "source_path": "02_Daily_Output/2026-07-25/RIO/night_drive_sleep/images/2026-07-25_RIO_night_drive_sleep_03.png",
+  "character": "RIO",
+  "status": "PASS",
+  "scores": {
+    "person": 92,
+    "object": 92,
+    "background": 92,
+    "photo_quality": 97,
+    "character_consistency": 90
+  },
+  "metrics": {
+    "width": 864,
+    "height": 1821,
+    "megapixels": 1.57,
+    "aspect_ratio": 0.474,
+    "file_size_bytes": 1785998,
+    "bytes_per_megapixel": 1135161,
+    "exif_cleaned": true,
+    "luminance_min": 0,
+    "luminance_max": 254,
+    "luminance_range": 254,
+    "luminance_mean": 72.39,
+    "luminance_stddev": 68.04,
+    "edge_mean": 6.47,
+    "context_chars": 3322,
+    "problem_marker_lines": 0,
+    "person_problem_hits": 0,
+    "object_problem_hits": 0,
+    "background_problem_hits": 0,
+    "consistency_problem_hits": 0,
+    "resolution_component": 92,
+    "aspect_ratio_component": 90,
+    "file_size_component": 100,
+    "contrast_component": 100,
+    "edge_component": 100,
+    "exif_component": 100
+  },
+  "critical_errors": [],
+  "person_findings": [
+    "人物領域の重大NG記録なし"
+  ],
+  "object_findings": [
+    "物・小物領域の重大NG記録なし"
+  ],
+  "background_findings": [
+    "背景・空間領域の重大NG記録なし"
+  ],
+  "photo_quality_findings": [
+    "解像度OK: 864x1821 / component=92",
+    "EXIF削除済み / component=100"
+  ],
+  "character_consistency_findings": [
+    "本人感・固定ルールの重大NG記録なし"
+  ],
+  "retry_required": false,
+  "retry_instruction": "",
+  "audited_at": "2026-07-27T07:17:05",
+  "score_summary": {
+    "average": 92.6,
+    "minimum": 90,
+    "pass_threshold_minimum": 80,
+    "pass_threshold_average": 85,
+    "fail_threshold_minimum": 64
+  }
+}

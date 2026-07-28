@@ -1,0 +1,27 @@
+{
+  "date": "2026-07-27",
+  "drive_folder_id": "1wbvJrd5J03ym0wsi1g3vt_ssn-IWp9Yg",
+  "remaining_uploaded": [
+    {
+      "rel": "RIO/night/sns_instagram.txt",
+      "id": "1sIg56il4XqALJMV0lvxRU8ZA_e8XzRGq"
+    },
+    {
+      "rel": "RIO/night/sns_threads.txt",
+      "id": "1kah2MsEzo7LHk3JQ_vawbnqmNNxs3u8T"
+    },
+    {
+      "rel": "RIO/night/status.json",
+      "id": "1hJhJPo9BQpGjuqiCNX1h6CynE9wtNE-f"
+    },
+    {
+      "rel": "RIO_night_contact_sheet.jpg",
+      "id": "1Vy41qkBIbqUnxFks7wKocnkSEjMKR5pK"
+    },
+    {
+      "rel": "RUN_REPORT.md",
+      "id": "1H681fR8DFm-bqNEXSJgbX2axanjFRc4u"
+    }
+  ],
+  "already_existing": []
+}

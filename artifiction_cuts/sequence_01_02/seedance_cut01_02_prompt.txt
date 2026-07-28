@@ -1,0 +1,20 @@
+ARTIFICTION EPISODE 0
+CUT 01-02 / OSAKA BAY GIANT ARTIFICIAL ISLAND
+
+CUT 01
+Duration: 5 seconds
+Start frame: cut01_start.png
+End frame: cut01_end_cut02_start.png
+Camera: very slow aerial descent and subtle forward drift toward the giant artificial island in Osaka Bay. Keep the same bird's-eye angle. No rotation, no fast zoom, no camera shake. Preserve the exact image style, coastline, bay shape, artificial island placement, bridges, docks, and city layout.
+
+CUT 02
+Duration: 5 seconds
+Start frame: cut01_end_cut02_start.png
+End frame: cut02_end.png
+Camera: continue the same slow descent and forward drift. The giant artificial island becomes the clear target. Keep motion calm, heavy, and monumental.
+
+Style lock:
+Cold gray-beige paper texture, muted blue-gray water, thin black ink map-lines, graphite wash, pencil scratches, restrained rust-orange harbor lights, analog production-board look.
+
+Negative prompt:
+No readable text, no labels, no UI, no characters, no Tokyo Bay, no Neo Tokyo layout, no copied AKIRA architecture, no new coastline, no new islands beyond the provided image, no fast zoom, no rotation, no glossy digital painting, no photoreal satellite look.

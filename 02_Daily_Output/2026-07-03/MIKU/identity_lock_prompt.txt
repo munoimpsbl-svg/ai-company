@@ -1,0 +1,66 @@
+MIKU identity lock:
+Use the masked MIKU reference photo as the highest-priority identity reference.
+Generate the same fictional person as MIKU, not a similar generic model.
+
+MIKU is a 35-year-old adult Japanese woman with a calm mature age impression.
+Do not make her look younger, childlike, Korean idol-like, generic AI-beauty-like, or like a woman in her early 20s.
+Do not enlarge her eyes.
+Do not make her face too small.
+Do not make her face too narrow.
+Do not make the jaw overly sharp.
+
+Mask:
+MIKU must always wear a white disposable surgical mask.
+The mask must correctly cover both nose and mouth.
+Never generate MIKU without a mask.
+Never show her mouth.
+Treat the mask as a required identity element, not an optional accessory.
+
+Face:
+Preserve MIKU's visible identity cues: almond-shaped natural brown eyes, natural outer eye corners, soft dark brows, slightly rounded cheeks, not-too-narrow face width, natural nose bridge above the mask, and calm adult expression.
+Keep the proportions grounded and realistic.
+
+Hair:
+Keep black to dark-brown soft long hair, natural airy bangs, and relaxed wavy texture close to the MIKU setting image.
+
+Style:
+Natural Japanese adult woman.
+Realistic smartphone photo.
+Natural skin texture.
+Minimal retouching.
+
+Composition freedom:
+Keep MIKU identity and mask as hard requirements, but allow wide variation in composition, framing, pose, outfit theme, location, and camera angle.
+Generate multiple visual patterns instead of repeating the same seated window portrait.
+Use close-up, upper-body, lower-body, full-body, pulled-back, and tight crop compositions.
+Use front view, back view, side view, looking back, looking down, looking up, crouching, leaning, standing, sitting, walking, and over-the-shoulder angles when appropriate.
+Use natural props and actions that match the daily theme and outfit theme.
+Examples: holding a chart, holding a mug, touching a mask strap, checking a phone, looking out a window, adjusting clothing, leaning on a table, walking through a hallway.
+The outfit, pose, neckline, cute/sexy balance, and fan-engagement strength are CEO judgment items, not Codex hard rejections.
+The window and park do not need to appear in every image.
+Use diverse shooting spots inside the room: desk, bed/sofa-bed, shelf corner, floor/rug, doorway, wall side, mirror area without impossible reflection, and room entrance.
+If the Daily Brief allows, use other natural locations such as hallway, elevator lobby, apartment entrance, cafe-like interior, office-like desk, or covered outdoor area.
+Avoid making every candidate a rainy-window shot.
+
+Composition quality:
+Reject physically incoherent compositions.
+Reject impossible mirror or reflection geometry.
+If a mirror is used, the reflected body area, camera angle, and mirror size must make physical sense.
+Reject unnatural poses that do not make everyday physical sense.
+Reject indoor shoes in MIKU's room. In her fixed room, she should be barefoot, in socks, stockings without shoes, or indoor slippers only.
+Do not accept an image just because the mood is good when the reflection, pose, hands, shoes, or body geometry is broken.
+
+Weather:
+Before generating weather-related images or captions, check the weather report for MIKU's residential area.
+Use the confirmed local weather as the basis for rain, sunshine, cloudy mood, temperature, humidity, and seasonal wording.
+Do not assume rainy weather unless the local weather report supports it or the Daily Brief explicitly instructs it.
+
+Fixed room setting:
+MIKU's room is a clean but lived-in adult single woman's room in an urban apartment.
+It has a large window, white lace curtains, greige curtains, a wooden desk, a white-to-beige bed, wooden shelves, small houseplants, dried flowers, a mug, a tabletop mirror, and warm indirect lighting.
+Outside the window, or behind the apartment building, there is a lush green park.
+The room should feel realistic, lived-in, calm, and adult, not childish, not messy, and not like a showroom.
+The window and park are available setting elements, not mandatory composition elements.
+
+Avoid:
+Unmasked face, visible mouth, young face, tiny face, oversized eyes, Korean idol face, generic AI beauty face, 20s influencer face, anime style, heavy filters, plastic skin.

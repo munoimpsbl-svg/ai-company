@@ -1,0 +1,20 @@
+Create a short authentic smartphone-style vertical video from the provided reference frame.
+
+Scene:
+RIO lies naturally on her side in bed in a quiet bedroom at around 7:00 AM. White bedding and pillows surround her. Soft morning sunlight enters from the window and gradually brightens the room. The mood is calm, natural, and lived-in.
+
+Motion:
+RIO slowly opens her eyes, gives one soft blink, and takes a small inhale. Her breathing remains very subtle. Only a slight movement is visible in her hair and shoulders. Keep the motion minimal and realistic.
+
+Camera:
+Completely still iPhone-style camera, 26mm equivalent, vertical 9:16 framing. No zoom, no pan, no dramatic camera move, no artificial cinematic movement.
+
+Identity:
+Keep RIO's exact facial identity from RIO MASTER SHEET v2. Do not change her face, age, hairstyle basis, body type, or overall presence. Avoid AI-beautified face changes.
+
+Look:
+Authentic smartphone realism, natural HDR, warm morning tone, soft contrast, natural skin texture, slight real-camera imperfection. No heavy beauty filter, no excessive sharpness, no glossy AI skin.
+
+Negative:
+No talking. No lip sync. No dialogue. No exaggerated movement. No big reaction. No smile added. No dance. No theatrical acting. No strong wind. No facial identity drift.
+

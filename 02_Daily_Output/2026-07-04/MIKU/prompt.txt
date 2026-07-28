@@ -1,0 +1,66 @@
+Use case: photorealistic-natural
+Asset type: MIKU daily SNS candidate images
+
+Date: 2026-07-04
+Character: MIKU
+Residential area: Osaka-shi Kita-ku, Osaka, Japan
+
+Daily Brief:
+- Overall direction: 週末に向けてファンとの距離を縮める
+- MIKU theme: 今日と明日は雨
+- Outfit theme: 女教師
+- Platforms: Instagram, X
+- Goals: コメントを増やす、ファンとの会話を増やす、写真集導線を自然に入れる
+
+Weather handling:
+- MIKU residential area is Osaka-shi Kita-ku.
+- Weather tool result was unavailable during this run.
+- Daily Brief explicitly says 今日と明日は雨, so rainy-day visuals were used.
+- Next runs should check Osaka-shi Kita-ku weather before finalizing weather wording.
+
+Absolute requirements:
+- MIKU本人感.
+- White disposable surgical mask required.
+- Mask must cover nose and mouth.
+- Do not show the mouth.
+- Preserve masked MIKU identity through eyes, gaze, bangs, black-to-dark-brown long wavy hair, and adult Japanese woman atmosphere.
+
+CEO judgment items:
+- Neckline.
+- Costume exposure.
+- Pose.
+- Cute / sexy balance.
+- Fan-engagement strength.
+- Final posting suitability.
+
+Fixed room:
+- Urban apartment room.
+- Large window.
+- White lace curtains.
+- Greige curtains.
+- Wooden desk.
+- White-to-beige bed or sofa-bed.
+- Wooden shelves.
+- Small houseplants.
+- Dried flowers.
+- Mug.
+- Tabletop mirror.
+- Warm indirect lighting.
+- Clean but lived-in adult single woman's room.
+- Outside the window, or behind the apartment, there is a lush green park.
+
+Image set:
+1. Close upper-body teacher portrait near rainy window, notebook/red pen.
+2. Pulled-back looking-back teacher pose near window.
+3. High-angle desk/grading-notes composition.
+4. Three-quarter / lower-body outfit-focused teacher pose.
+5. Low-angle sofa-bed / after-work teacher pose.
+
+Avoid hard failures:
+- Unmasked face.
+- Visible mouth.
+- Clear different person.
+- Childlike appearance.
+- Extra people.
+- Severe face or hand distortion.
+- Text or watermark.

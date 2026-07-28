@@ -1,0 +1,43 @@
+# MIKU Prompt Update - 2026-07-22
+
+## Scope
+- MIKU only.
+- Based on Daily_Brief.md dated 2026-07-22.
+- No SNS posting.
+- No SNS login.
+- No browser operation.
+- Existing accepted images are not overwritten.
+
+## Required Identity
+- Use MIKU base reference sheet as the priority reference.
+- Same person as MIKU.
+- 35-year-old adult Japanese woman.
+- Mask required.
+- Mature, calm age impression.
+- Do not make her look like a Korean idol, generic AI beauty, or early-20s character.
+
+## Morning Scene
+- Tokyo business trip / training.
+- Loose work outfit, not overly formal.
+- Navy blazer, off-white blouse, beige skirt.
+- Black work bag and simple watch.
+- Normal selfie.
+- The phone/camera used for the selfie must be outside the image frame.
+- No smartphone on lap, table, seat, floor, window side, or bag.
+
+## Night Scene
+- Returning home on a Shinkansen-like Japanese bullet train interior.
+- Describe as "新幹線の車内" or "帰りの新幹線".
+- Do not claim 700 series.
+- Nighttime window, reserved-seat style interior, subdued train lighting.
+- Same outfit and bag continuity as morning.
+- Normal selfie.
+- The phone/camera used for the selfie must be outside the image frame.
+- No smartphone on lap, table, seat, floor, window side, or bag.
+
+## Negative Rules
+- No visible smartphone unless explicitly requested as a mirror selfie or prop cut.
+- No white phone in normal selfie.
+- No readable brand logo, train model text, distorted signage, or broken background text.
+- No plastic skin, wax skin, over-smoothed AI face, warped hands, extra fingers, broken hair, or impossible interior.
+

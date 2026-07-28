@@ -1,0 +1,30 @@
+# Prompt
+
+## Daily Brief
+- 午前から外出。
+- 大阪市北区は猛暑寄り。完全な雨前提にしない。
+- RIO外出用の服装は添付画像を基準に固定。
+
+## Character Lock
+- RIO本人感を優先。
+- 22歳の成人日本人女性。
+- 2026-07-12の基準顔を正本。
+- 体型は B90 / W60 / H90。
+- 足を見せるRIOのテーマは維持。
+
+## Outfit
+- light blue sleeveless top
+- black short pants
+- black shoulder bag
+- black socks
+- black shoes
+- black long hair with natural bangs
+
+## Scene
+- outdoor sidewalk
+- city/shopping area
+- hot summer daylight
+- no readable signs, logos, or broken text
+
+## Priority
+- 優先候補: `01` `03` `05`

@@ -1,0 +1,25 @@
+.secrets/
+.env
+.env.*
+!.env.example
+.venv/
+__pycache__/
+.pycache/
+*.pyc
+output/
+.DS_Store
+.streamlit_mobile.log
+.streamlit_mobile.pid
+dist/
+installer/
+
+# Generated media stays in Google Drive/local storage, not GitHub.
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.gif
+*.mp4
+*.mov
+*.zip
+*.exifcleaned

@@ -1,0 +1,215 @@
+{
+  "character": "RIO",
+  "output_date": "2026-07-25",
+  "source_dir": "02_Daily_Output/2026-07-25/RIO/morning_seaside",
+  "total_images": 3,
+  "pass_count": 3,
+  "review_count": 0,
+  "fail_count": 0,
+  "minimum_pass_required": 3,
+  "ready_for_post_preparation": true,
+  "generated_at": "2026-07-27T07:17:04",
+  "reports": [
+    {
+      "file_name": "2026-07-25_RIO_morning_seaside_01.png",
+      "source_path": "02_Daily_Output/2026-07-25/RIO/morning_seaside/images/2026-07-25_RIO_morning_seaside_01.png",
+      "character": "RIO",
+      "status": "PASS",
+      "scores": {
+        "person": 92,
+        "object": 92,
+        "background": 92,
+        "photo_quality": 99,
+        "character_consistency": 90
+      },
+      "metrics": {
+        "width": 1086,
+        "height": 1448,
+        "megapixels": 1.57,
+        "aspect_ratio": 0.75,
+        "file_size_bytes": 2253234,
+        "bytes_per_megapixel": 1432874,
+        "exif_cleaned": true,
+        "luminance_min": 0,
+        "luminance_max": 255,
+        "luminance_range": 255,
+        "luminance_mean": 151.88,
+        "luminance_stddev": 63.72,
+        "edge_mean": 10.95,
+        "context_chars": 3322,
+        "problem_marker_lines": 0,
+        "person_problem_hits": 0,
+        "object_problem_hits": 0,
+        "background_problem_hits": 0,
+        "consistency_problem_hits": 0,
+        "resolution_component": 92,
+        "aspect_ratio_component": 100,
+        "file_size_component": 100,
+        "contrast_component": 100,
+        "edge_component": 100,
+        "exif_component": 100
+      },
+      "critical_errors": [],
+      "person_findings": [
+        "人物領域の重大NG記録なし"
+      ],
+      "object_findings": [
+        "物・小物領域の重大NG記録なし"
+      ],
+      "background_findings": [
+        "背景・空間領域の重大NG記録なし"
+      ],
+      "photo_quality_findings": [
+        "解像度OK: 1086x1448 / component=92",
+        "EXIF削除済み / component=100"
+      ],
+      "character_consistency_findings": [
+        "本人感・固定ルールの重大NG記録なし"
+      ],
+      "retry_required": false,
+      "retry_instruction": "",
+      "audited_at": "2026-07-27T07:17:04",
+      "score_summary": {
+        "average": 93,
+        "minimum": 90,
+        "pass_threshold_minimum": 80,
+        "pass_threshold_average": 85,
+        "fail_threshold_minimum": 64
+      }
+    },
+    {
+      "file_name": "2026-07-25_RIO_morning_seaside_02.png",
+      "source_path": "02_Daily_Output/2026-07-25/RIO/morning_seaside/images/2026-07-25_RIO_morning_seaside_02.png",
+      "character": "RIO",
+      "status": "PASS",
+      "scores": {
+        "person": 92,
+        "object": 92,
+        "background": 92,
+        "photo_quality": 99,
+        "character_consistency": 90
+      },
+      "metrics": {
+        "width": 1086,
+        "height": 1448,
+        "megapixels": 1.57,
+        "aspect_ratio": 0.75,
+        "file_size_bytes": 2237202,
+        "bytes_per_megapixel": 1422679,
+        "exif_cleaned": true,
+        "luminance_min": 1,
+        "luminance_max": 255,
+        "luminance_range": 254,
+        "luminance_mean": 158.15,
+        "luminance_stddev": 56.7,
+        "edge_mean": 10.99,
+        "context_chars": 3322,
+        "problem_marker_lines": 0,
+        "person_problem_hits": 0,
+        "object_problem_hits": 0,
+        "background_problem_hits": 0,
+        "consistency_problem_hits": 0,
+        "resolution_component": 92,
+        "aspect_ratio_component": 100,
+        "file_size_component": 100,
+        "contrast_component": 100,
+        "edge_component": 100,
+        "exif_component": 100
+      },
+      "critical_errors": [],
+      "person_findings": [
+        "人物領域の重大NG記録なし"
+      ],
+      "object_findings": [
+        "物・小物領域の重大NG記録なし"
+      ],
+      "background_findings": [
+        "背景・空間領域の重大NG記録なし"
+      ],
+      "photo_quality_findings": [
+        "解像度OK: 1086x1448 / component=92",
+        "EXIF削除済み / component=100"
+      ],
+      "character_consistency_findings": [
+        "本人感・固定ルールの重大NG記録なし"
+      ],
+      "retry_required": false,
+      "retry_instruction": "",
+      "audited_at": "2026-07-27T07:17:04",
+      "score_summary": {
+        "average": 93,
+        "minimum": 90,
+        "pass_threshold_minimum": 80,
+        "pass_threshold_average": 85,
+        "fail_threshold_minimum": 64
+      }
+    },
+    {
+      "file_name": "2026-07-25_RIO_morning_seaside_03.png",
+      "source_path": "02_Daily_Output/2026-07-25/RIO/morning_seaside/images/2026-07-25_RIO_morning_seaside_03.png",
+      "character": "RIO",
+      "status": "PASS",
+      "scores": {
+        "person": 92,
+        "object": 92,
+        "background": 92,
+        "photo_quality": 98,
+        "character_consistency": 90
+      },
+      "metrics": {
+        "width": 1024,
+        "height": 1536,
+        "megapixels": 1.57,
+        "aspect_ratio": 0.667,
+        "file_size_bytes": 2858598,
+        "bytes_per_megapixel": 1817448,
+        "exif_cleaned": true,
+        "luminance_min": 0,
+        "luminance_max": 255,
+        "luminance_range": 255,
+        "luminance_mean": 120.48,
+        "luminance_stddev": 58.35,
+        "edge_mean": 26.33,
+        "context_chars": 3322,
+        "problem_marker_lines": 0,
+        "person_problem_hits": 0,
+        "object_problem_hits": 0,
+        "background_problem_hits": 0,
+        "consistency_problem_hits": 0,
+        "resolution_component": 100,
+        "aspect_ratio_component": 100,
+        "file_size_component": 100,
+        "contrast_component": 100,
+        "edge_component": 88,
+        "exif_component": 100
+      },
+      "critical_errors": [],
+      "person_findings": [
+        "人物領域の重大NG記録なし"
+      ],
+      "object_findings": [
+        "物・小物領域の重大NG記録なし"
+      ],
+      "background_findings": [
+        "背景・空間領域の重大NG記録なし"
+      ],
+      "photo_quality_findings": [
+        "解像度OK: 1024x1536 / component=100",
+        "EXIF削除済み / component=100"
+      ],
+      "character_consistency_findings": [
+        "本人感・固定ルールの重大NG記録なし"
+      ],
+      "retry_required": false,
+      "retry_instruction": "",
+      "audited_at": "2026-07-27T07:17:04",
+      "score_summary": {
+        "average": 92.8,
+        "minimum": 90,
+        "pass_threshold_minimum": 80,
+        "pass_threshold_average": 85,
+        "fail_threshold_minimum": 64
+      }
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "instructions": [
+    "生成後に必ず目視で入力する。未入力の画像はAI-VQCでPASSにしない。",
+    "identity_scoreは0-100。90以上=本人感強い、80-89=採用前確認、65-79=再生成候補、64以下=FAIL。",
+    "衣装資料・構図資料の顔に引っ張られている場合はface_matches_base=falseにする。"
+  ],
+  "images": {
+    "2026-07-27_MIKU_night_01.png": {
+      "identity_score": null,
+      "base_reference_used": false,
+      "face_matches_base": false,
+      "age_matches": false,
+      "hair_matches": false,
+      "body_matches": false,
+      "outfit_reference_limited_to_clothes": false,
+      "notes": ""
+    },
+    "2026-07-27_MIKU_night_02.png": {
+      "identity_score": null,
+      "base_reference_used": false,
+      "face_matches_base": false,
+      "age_matches": false,
+      "hair_matches": false,
+      "body_matches": false,
+      "outfit_reference_limited_to_clothes": false,
+      "notes": ""
+    },
+    "2026-07-27_MIKU_night_03.png": {
+      "identity_score": null,
+      "base_reference_used": false,
+      "face_matches_base": false,
+      "age_matches": false,
+      "hair_matches": false,
+      "body_matches": false,
+      "outfit_reference_limited_to_clothes": false,
+      "notes": ""
+    }
+  }
+}

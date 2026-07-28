@@ -1,0 +1,54 @@
+Use case: photorealistic-natural
+Asset type: MIKU social media candidate image
+Primary request: Generate a photorealistic smartphone-style image of MIKU, a fictional adult Japanese woman influencer age 35, wearing a very modest maid-inspired home outfit for a rainy-season casual fan conversation post.
+
+Daily theme:
+「梅雨明けはいつなんだろう」
+週末に向けてファンとの距離を縮める、仕事終わりの雑談投稿。
+
+Weather rule:
+Before generating weather-related images or captions, check the weather report for MIKU's residential area.
+Use the confirmed local weather as the basis for rain, sunshine, cloudy mood, temperature, humidity, and seasonal wording.
+Do not assume rain unless the local weather report supports it or the Daily Brief explicitly instructs it.
+
+Composition freedom:
+Keep MIKU identity and mask as hard requirements, but vary the visual output widely.
+Do not repeat only seated rainy-window portraits.
+Allow close-up, upper-body, lower-body, full-body, pull-back, and tight crop framing.
+Allow front, back, side, looking back, looking down, looking up, crouching, leaning, standing, sitting, walking, and over-the-shoulder compositions.
+Allow varied outfit themes, locations, props, and actions when they match the Daily Brief.
+Outfit cut, neckline, pose, cute/sexy balance, and fan-engagement appeal are CEO judgment items.
+
+Reference guidance:
+Follow the MIKU character setting sheet:
+- Mature adult woman, age 35 impression
+- 165cm impression, slim but healthy proportions
+- Long black hair with soft waves and airy bangs
+- Almond-shaped brown eyes
+- Natural makeup, soft pink-beige lips
+- Gentle, approachable, slightly playful expression
+- Natural lifestyle mood, not overly polished
+
+Scene/backdrop:
+MIKU's fixed room setting: a cozy, clean but lived-in adult single woman's room in an urban apartment. Include a large window, white lace curtains, greige curtains, wooden desk, white-to-beige bed, wooden shelves, small houseplants, dried flowers, mug, tabletop mirror, and warm indirect lighting. Outside the window, or behind the apartment building, there is a lush green park. The room should feel natural, tidy, calm, and lived-in rather than like a studio.
+
+Subject:
+One clearly adult woman, fully clothed. Wear a modest maid-inspired outfit: long-sleeve white buttoned blouse closed to the collar, black apron dress, no exposed chest. Seated naturally and holding a mug or relaxing near a desk/window.
+
+Style/medium:
+Realistic smartphone photo, candid lifestyle social media image, natural skin texture, minimal retouching, no studio polish.
+
+Composition/framing:
+Vertical portrait for Instagram/X. Waist-up or upper-body framing. Camera near eye level. Rainy window visible. Face clear. Hands natural and relaxed.
+
+Lighting/mood:
+Soft overcast natural daylight, calm after-work tone, cozy and conversational.
+
+Color palette:
+Black wavy hair, brown eyes, white blouse, black apron dress, beige home interior, cool rainy window tones.
+
+Constraints:
+Adult subject, non-sexual, modest full clothing, closed collar, no cleavage, no provocative pose, no text, no watermark, no brand logos.
+
+Avoid:
+Childlike appearance, lingerie, low-cut neckline, exposed chest, fetishized styling, exaggerated body proportions, anime style, heavy filters, plastic skin, distorted hands, extra people.

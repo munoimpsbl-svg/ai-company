@@ -1,0 +1,71 @@
+{
+  "file_name": "2026-07-27_RIO_morning_01.png",
+  "source_path": "02_Daily_Output/2026-07-27/RIO/morning/images/2026-07-27_RIO_morning_01.png",
+  "character": "RIO",
+  "status": "REVIEW",
+  "scores": {
+    "person": 70,
+    "object": 92,
+    "background": 92,
+    "photo_quality": 97,
+    "character_consistency": 72
+  },
+  "identity_review_required": true,
+  "identity_review_score": null,
+  "identity_review_source": "",
+  "identity_review_items": {},
+  "metrics": {
+    "width": 941,
+    "height": 1672,
+    "megapixels": 1.57,
+    "aspect_ratio": 0.563,
+    "file_size_bytes": 2314674,
+    "bytes_per_megapixel": 1471174,
+    "exif_cleaned": true,
+    "luminance_min": 0,
+    "luminance_max": 255,
+    "luminance_range": 255,
+    "luminance_mean": 139.42,
+    "luminance_stddev": 65.81,
+    "edge_mean": 12.77,
+    "context_chars": 3356,
+    "problem_marker_lines": 0,
+    "person_problem_hits": 0,
+    "object_problem_hits": 0,
+    "background_problem_hits": 0,
+    "consistency_problem_hits": 0,
+    "resolution_component": 92,
+    "aspect_ratio_component": 90,
+    "file_size_component": 100,
+    "contrast_component": 100,
+    "edge_component": 100,
+    "exif_component": 100
+  },
+  "critical_errors": [],
+  "person_findings": [
+    "本人感の目視レビュー未記録: 自動PASS禁止"
+  ],
+  "object_findings": [
+    "物・小物領域の重大NG記録なし"
+  ],
+  "background_findings": [
+    "背景・空間領域の重大NG記録なし"
+  ],
+  "photo_quality_findings": [
+    "解像度OK: 941x1672 / component=92",
+    "EXIF削除済み / component=100"
+  ],
+  "character_consistency_findings": [
+    "identity_review.json または画像別_notes.jsonで本人感点数が未入力"
+  ],
+  "retry_required": true,
+  "retry_instruction": "背景を単純化し、読める文字やロゴを避ける。人物、服装、テーマは維持する。",
+  "audited_at": "2026-07-27T23:17:23",
+  "score_summary": {
+    "average": 84.6,
+    "minimum": 70,
+    "pass_threshold_minimum": 80,
+    "pass_threshold_average": 85,
+    "fail_threshold_minimum": 64
+  }
+}

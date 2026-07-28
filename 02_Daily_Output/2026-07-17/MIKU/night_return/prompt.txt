@@ -1,0 +1,28 @@
+# Prompt
+
+## Daily Brief
+- 深夜便で関西方面に帰る一コマ。
+- 空港、移動、帰国前後の流れが破綻しないこと。
+
+## Character Lock
+- MIKU本人感を優先。
+- 35歳の成人日本人女性。
+- マスク着用必須。
+- スマホが写る場合は白で固定。
+- 体型は B95 / W60 / H95。
+
+## Outfit
+- navy blazer
+- white blouse
+- beige skirt
+- black shoulder bag
+- white mask
+- white smartphone
+
+## Scene
+- late-night airport
+- gate area, airport corridor, window seating, luggage nearby
+- no readable signs, logos, or broken text
+
+## Priority
+- 優先候補: `01` `03` `04`

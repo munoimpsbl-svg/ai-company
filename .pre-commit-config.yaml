@@ -1,0 +1,6 @@
+repos:
+  - repo: https://github.com/stefmolin/exif-stripper
+    rev: 1.2.0
+    hooks:
+      - id: strip-exif
+        files: \.(jpe?g|png|webp)$

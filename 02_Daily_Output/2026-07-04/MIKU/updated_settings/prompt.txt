@@ -1,0 +1,72 @@
+Use case: photorealistic-natural
+Asset type: MIKU updated daily output
+
+Date: 2026-07-04
+Character: MIKU
+Residential area: Osaka-shi Kita-ku, Osaka, Japan
+
+Daily Brief:
+- Overall direction: 週末に向けてファンとの距離を縮める
+- Theme: 今日と明日は雨
+- Outfit theme: 女教師
+- Platforms: Instagram, X
+- Goals: コメントを増やす、ファンとの会話を増やす、写真集導線を自然に入れる
+
+Profile updates:
+- Generate 5 selfies.
+- Generate 5 photobook-style images.
+- Angles and composition should be free.
+- Amateur realism is good, especially for selfies.
+
+Hard requirements:
+- MIKU本人感.
+- White disposable surgical mask required.
+- Mask must cover nose and mouth.
+- No visible mouth.
+- Preserve masked MIKU identity through eyes, gaze, bangs, black-to-dark-brown long wavy hair, and adult Japanese woman atmosphere.
+
+Quality rejection rules:
+- Reject unmasked images.
+- Reject obvious different-person images.
+- Reject severe hand, face, or anatomy distortion.
+- Reject unnatural poses that do not make everyday physical sense.
+- Reject impossible mirror/reflection geometry.
+- Reject indoor shoes in MIKU's fixed room. Use barefoot, socks, stockings without shoes, or indoor slippers only.
+- Reject physically incoherent compositions even if the mood is good.
+- After saving final image files, pass them through ImageOptim before delivery.
+
+CEO judgment items:
+- Neckline.
+- Costume exposure.
+- Pose.
+- Cute / sexy balance.
+- Fan-engagement strength.
+- Final posting suitability.
+
+Fixed room:
+- Urban apartment room in Osaka.
+- Large window.
+- White lace curtains.
+- Greige curtains.
+- Wooden desk.
+- White-to-beige bed or sofa-bed.
+- Wooden shelves.
+- Small houseplants.
+- Dried flowers.
+- Mug.
+- Tabletop mirror.
+- Warm indirect lighting.
+- Clean but lived-in adult single woman's room.
+- Outside the window, or behind the apartment, there is a lush green park.
+- The window and park are available setting elements, not mandatory in every image.
+- Use diverse shooting spots: desk, bed/sofa-bed, shelf corner, floor/rug, doorway, wall side, room entrance, and other natural indoor locations.
+- Avoid making every image a rainy-window composition.
+
+Weather handling:
+- MIKU residential area is Osaka-shi Kita-ku.
+- Direct weather lookup was unavailable in this environment.
+- Daily Brief explicitly says 今日と明日は雨, so rainy-day visuals and copy were used.
+
+Output categories:
+- Selfie: 5 images.
+- Photobook: 5 images.

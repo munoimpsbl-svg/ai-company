@@ -1,0 +1,27 @@
+# Prompt
+
+## Daily Brief
+- 余力があれば夜はジム。
+- ジム着は任せる。
+- 普段着や外出服のままトレーニングしない。
+- ジム背景では人が少なすぎる不自然さを避ける。
+
+## Character Lock
+- RIO本人感を優先。
+- 22歳の成人日本人女性。
+- 体型は B90 / W60 / H90。
+
+## Outfit
+- charcoal fitted athletic T-shirt
+- black gym shorts
+- white training shoes
+- hair loosely tied with bangs
+
+## Scene
+- evening gym
+- dumbbells, cable machine, bench
+- some other gym users blurred in background
+- no readable logos or broken text
+
+## Priority
+- 優先候補: `01` `03`
