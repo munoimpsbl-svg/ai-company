@@ -1,0 +1,17 @@
+.env
+.env.*
+!.env.example
+.secrets/
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.gif
+*.mp4
+*.mov
+*.zip
+output/
