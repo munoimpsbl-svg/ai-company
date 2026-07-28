@@ -4,6 +4,8 @@ from pathlib import Path
 import re
 from typing import Dict, List, Optional
 
+from core.wardrobe import infer_slot_outfit
+
 
 CHARACTERS = ("MIKU", "RIO")
 PLATFORM_FILES = {
@@ -19,6 +21,8 @@ class TodayPost:
     character: str
     slot: str
     theme: str
+    outfit: str
+    outfit_source: str
     image_folder: str
     images: List[str]
     post_texts: Dict[str, str]
@@ -52,6 +56,8 @@ def build_today_post(
                     "",
                     "- キャラクター名: " + character,
                     "- 今日のテーマ: 未取得",
+                    "- 衣装タグ: 未取得",
+                    "- 衣装根拠: 未取得",
                     "- 採用画像フォルダ: 未取得",
                     "- 採用画像一覧:",
                     "  - 未取得",
@@ -118,11 +124,14 @@ def collect_today_posts(workspace_root: Path, output_date: date) -> List[TodayPo
                     post_texts[platform] = post_text
             images = _adopted_images(slot_dir, _read_optional(slot_dir / "report.md"))
             prompt = _read_optional(slot_dir / "prompt.txt")
+            outfit = infer_slot_outfit(slot_dir)
             posts.append(
                 TodayPost(
                     character=character,
                     slot=slot_dir.name if slot_dir != character_dir else "default",
                     theme=_extract_theme(prompt),
+                    outfit=outfit["label"],
+                    outfit_source=outfit["source"],
                     image_folder=_relative(slot_dir / "images", workspace_root),
                     images=[_relative(path, workspace_root) for path in images],
                     post_texts=post_texts,
@@ -145,6 +154,8 @@ def _format_post(post: TodayPost) -> List[str]:
         "",
         f"- キャラクター名: {post.character}",
         f"- 今日のテーマ: {post.theme}",
+        f"- 衣装タグ: {post.outfit}",
+        f"- 衣装根拠: {post.outfit_source}",
         f"- 採用画像フォルダ: `{post.image_folder}`",
         "- 採用画像一覧:",
     ]
@@ -226,6 +237,8 @@ def _format_blocker(daily_dir: Path, posts: List[TodayPost]) -> str:
         label = f"{post.character}/{post.slot}"
         if post.theme == "未取得":
             blockers.append(f"{label}: 今日のテーマ未取得")
+        if post.outfit == "未取得":
+            blockers.append(f"{label}: 衣装タグ未取得")
         if not post.images:
             blockers.append(f"{label}: 採用画像未取得")
         if not post.post_texts:

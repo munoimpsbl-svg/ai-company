@@ -161,3 +161,37 @@ Priority
 - [x] SNS投稿しない
 - [x] SNSログインしない
 - [x] ファイル削除しない
+
+---
+
+## TASK-005 衣装ローテーション監査
+
+Status
+DONE
+
+Priority
+★★★★☆
+
+入力
+
+- `02_Daily_Output/YYYY-MM-DD/MIKU/`
+- `02_Daily_Output/YYYY-MM-DD/RIO/`
+- `prompt.txt`
+- `report.md`
+- `status.json`
+- フォルダ名
+
+出力
+
+- `03_SNS事業部/03_Analytics/WARDROBE_ROTATION_REPORT.md`
+- `03_SNS事業部/04_Daily/TODAY_POST.md`の衣装タグ欄
+
+完了条件
+
+- [x] 今日の衣装タグを出力する
+- [x] 直近ローテーションを出力する
+- [x] 明日の衣装候補を出力する
+- [x] 根拠がない場合は`未取得`にする
+- [x] SNS投稿しない
+- [x] 画像生成しない
+- [x] ファイル削除しない

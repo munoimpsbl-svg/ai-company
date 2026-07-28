@@ -2,7 +2,7 @@
 
 日付
 
-2026-07-28
+2026-07-29
 
 ---
 
@@ -12,7 +12,9 @@
 
 - キャラクター名: MIKU
 - 今日のテーマ: 未取得
-- 採用画像フォルダ: `02_Daily_Output/2026-07-28/MIKU/morning/images`
+- 衣装タグ: 未取得
+- 衣装根拠: status.json
+- 採用画像フォルダ: `02_Daily_Output/2026-07-29/MIKU/morning/images`
 - 採用画像一覧:
   - 未取得
 - Instagram投稿文
@@ -43,7 +45,9 @@
 
 - キャラクター名: MIKU
 - 今日のテーマ: 未取得
-- 採用画像フォルダ: `02_Daily_Output/2026-07-28/MIKU/night/images`
+- 衣装タグ: 未取得
+- 衣装根拠: status.json
+- 採用画像フォルダ: `02_Daily_Output/2026-07-29/MIKU/night/images`
 - 採用画像一覧:
   - 未取得
 - Instagram投稿文
@@ -76,7 +80,9 @@
 
 - キャラクター名: RIO
 - 今日のテーマ: 未取得
-- 採用画像フォルダ: `02_Daily_Output/2026-07-28/RIO/morning/images`
+- 衣装タグ: 未取得
+- 衣装根拠: status.json
+- 採用画像フォルダ: `02_Daily_Output/2026-07-29/RIO/morning/images`
 - 採用画像一覧:
   - 未取得
 - Instagram投稿文
@@ -107,7 +113,9 @@
 
 - キャラクター名: RIO
 - 今日のテーマ: 未取得
-- 採用画像フォルダ: `02_Daily_Output/2026-07-28/RIO/night/images`
+- 衣装タグ: 未取得
+- 衣装根拠: status.json
+- 採用画像フォルダ: `02_Daily_Output/2026-07-29/RIO/night/images`
 - 採用画像一覧:
   - 未取得
 - Instagram投稿文
@@ -146,14 +154,18 @@
 ## Blocker
 
 - MIKU/morning: 今日のテーマ未取得
+- MIKU/morning: 衣装タグ未取得
 - MIKU/morning: 採用画像未取得
 - MIKU/morning: 投稿文未取得
 - MIKU/night: 今日のテーマ未取得
+- MIKU/night: 衣装タグ未取得
 - MIKU/night: 採用画像未取得
 - MIKU/night: 投稿文未取得
 - RIO/morning: 今日のテーマ未取得
+- RIO/morning: 衣装タグ未取得
 - RIO/morning: 採用画像未取得
 - RIO/morning: 投稿文未取得
 - RIO/night: 今日のテーマ未取得
+- RIO/night: 衣装タグ未取得
 - RIO/night: 採用画像未取得
 - RIO/night: 投稿文未取得

@@ -6,6 +6,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from core.sns_report import build_sns_report, save_sns_report
 from core.today_post import build_today_post, save_today_post
+from core.wardrobe import build_wardrobe_report, save_wardrobe_report
 
 
 def main() -> int:
@@ -68,6 +69,34 @@ def main() -> int:
 """
         today_post_path = save_today_post(workspace_root, fallback)
         print(f"TODAY_POST saved with error: {today_post_path}")
+        print(f"Error: {exc}")
+
+    try:
+        wardrobe_report = build_wardrobe_report(workspace_root)
+        wardrobe_report_path = save_wardrobe_report(workspace_root, wardrobe_report)
+        print(f"WARDROBE_ROTATION_REPORT saved: {wardrobe_report_path}")
+    except Exception as exc:
+        fallback = f"""# WARDROBE ROTATION REPORT
+
+日付
+
+未取得
+
+---
+
+## Blocker
+
+- {exc}
+
+## 制約確認
+
+- SNS投稿: 未実行
+- 画像生成: 未実行
+- ファイル削除: 未実行
+- 分析のみ: OK
+"""
+        wardrobe_report_path = save_wardrobe_report(workspace_root, fallback)
+        print(f"WARDROBE_ROTATION_REPORT saved with error: {wardrobe_report_path}")
         print(f"Error: {exc}")
     return 0
 

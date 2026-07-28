@@ -218,6 +218,166 @@ Priority
 Status
 DONE
 
+---
+
+## Sprint11 Company Hub / X結果蓄積
+
+Status
+DONE
+
+Priority
+★★★★★
+
+完了条件
+
+- [x] `Company Hub`画面を追加する
+- [x] 携帯でも見やすいサマリーカードを追加する
+- [x] KPI / 部署 / Runner / CEO情報を集約する
+- [x] 今日の流れをアニメーション付きで表示する
+- [x] Xの結果を貼り付けられる
+- [x] X結果から表示回数、いいね、リポスト、返信、クリック系を抽出する
+- [x] X結果をMarkdownとCSVへ蓄積する
+- [x] AI COMPANY情報をタブで集約表示する
+- [x] SNS投稿、SNSログイン、WordPress更新、削除を行わない
+
+---
+
+## Sprint12 Console Visual Upgrade
+
+Status
+DONE
+
+Priority
+★★★★☆
+
+完了条件
+
+- [x] コンソール上部に視認性の高いヘッダーを追加
+- [x] 色付きナビカードを追加
+- [x] アニメーションで稼働状態を表示
+- [x] MIKU / RIOの画像プレビューを表示
+- [x] スマホ表示向けCSSを追加
+- [x] `main.py`構文チェックOK
+- [x] `http://localhost:8510`でHTTP 200確認
+- [x] SNS投稿、SNSログイン、WordPress更新、削除を行わない
+
+---
+
+## Sprint13 AI美女 品質監査集約
+
+Status
+DONE
+
+Priority
+★★★★★
+
+完了条件
+
+- [x] Command CenterへAI美女品質監査を追加する
+- [x] Company HubへAI美女品質監査を追加する
+- [x] AI-VQC仕様を表示できる
+- [x] MIKU / RIO固定ルールを表示できる
+
+---
+
+## Sprint追加 衣装ローテーション監査
+
+- [x] `WARDROBE_ROTATION_REPORT.md`を読み込む
+- [x] 今日の衣装タグをカード表示する
+- [x] 明日の衣装候補を表示する
+- [x] 衣装未取得をBlockerとして表示する
+- [x] 表示のみでSNS投稿、画像生成、削除を行わない
+- [x] 画像別品質JSONから本人感未確認を集計する
+- [x] 別人化リスクを集計する
+- [x] AI感・不自然表現リスクを集計する
+- [x] 要確認画像をカード表示する
+- [x] AI COMPANY情報集約タブにAI美女カテゴリを追加する
+- [x] `main.py`構文チェックOK
+- [x] SNS投稿、SNSログイン、WordPress更新、削除を行わない
+
+---
+
+## Sprint14 Visual Boost
+
+Status
+DONE
+
+Priority
+★★★★☆
+
+完了条件
+
+- [x] 上部にテンションが上がる状態カードを追加する
+- [x] SEO / SNS / KPI / 品質監査 / Blockerをカード化する
+- [x] カードに動くゲージを追加する
+- [x] 候補画像を`Creative Deck`として表示する
+- [x] ヒーロー背景に動きのあるグリッドを追加する
+- [x] スマホ表示でカードが1列になる
+- [x] `main.py`構文チェックOK
+- [x] SNS投稿、SNSログイン、WordPress更新、削除を行わない
+
+---
+
+## Sprint15 AI社員 Live Run
+
+Status
+DONE
+
+Priority
+★★★★★
+
+完了条件
+
+- [x] Runner実行ボタンでバックグラウンド実行を開始する
+- [x] Runner進捗を`.dashboard_jobs/runner_progress.json`へ保存する
+- [x] ダッシュボードでAI社員カードを表示する
+- [x] 作業中 / 完了 / 要確認 / 待機を表示する
+- [x] 実行中はAI社員の進捗に合わせて画面を自動更新する
+- [x] SNS分析AI、グラビア事業部長AI、KPI分析AI、アダルト事業部長AI、品質監査AI、AI社長、同期AIを表示する
+- [x] `main.py`とRunnerの構文チェックOK
+- [x] SNS投稿、WordPress更新、削除を行わない
+
+---
+
+## Sprint16 Daily Brief Factory
+
+Status
+DONE
+
+Priority
+★★★★★
+
+完了条件
+
+- [x] Daily BriefをCommand Centerへ集約する
+- [x] P002 / P003 / P004 / CEO_REPORTをカード表示する
+- [x] `Daily Brief更新`ボタンを追加する
+- [x] 更新ボタンでDaily Brief生成ジョブをバックグラウンド起動する
+- [x] 生成ジョブの進捗を`.dashboard_jobs/daily_brief_progress.json`へ保存する
+- [x] 入力確認 / SNS生成 / グラビア生成 / アダルト生成 / AI社長集約を表示する
+- [x] 実行中は生成進捗に合わせて画面を自動更新する
+- [x] `main.py`と`run_daily_brief_job.py`構文チェックOK
+- [x] SNS投稿、WordPress更新、削除を行わない
+
+---
+
+## Sprint17 成果物ページ
+
+Status
+DONE
+
+Priority
+★★★★☆
+
+完了条件
+
+- [x] 画面切替に`成果物`を追加する
+- [x] 主要成果物をカード表示する
+- [x] 更新日時とファイルパスを表示する
+- [x] 本文を展開表示できる
+- [x] Markdownをダウンロードできる
+- [x] 投稿、更新、削除を行わない
+
 Priority
 ★★★★★
 

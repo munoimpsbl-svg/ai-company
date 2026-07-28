@@ -146,3 +146,38 @@ SNS_REPORT.mdを要約し、SNS運営の今日やることTOP3を共通仕様の
 - SNSログイン操作
 - 画像生成
 - ファイル削除
+
+## 衣装ローテーション仕様
+
+目的:
+
+MIKU / RIOの投稿素材で同じ服装が続く問題を防ぐため、衣装タグと直近ローテーションを記録する。
+
+入力:
+
+- `02_Daily_Output/YYYY-MM-DD/MIKU/`
+- `02_Daily_Output/YYYY-MM-DD/RIO/`
+- `prompt.txt`
+- `report.md`
+- `status.json`
+- フォルダ名
+
+出力:
+
+- `03_SNS事業部/03_Analytics/WARDROBE_ROTATION_REPORT.md`
+
+取得項目:
+
+- 今日の衣装タグ
+- 根拠
+- 直近ローテーション
+- 明日の衣装候補
+- Blocker
+
+制約:
+
+- 画像から服装を断定しない
+- 根拠がない場合は`未取得`
+- SNS投稿禁止
+- 画像生成禁止
+- ファイル削除禁止

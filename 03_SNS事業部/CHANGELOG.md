@@ -41,6 +41,28 @@
 - ファイル削除なし。
 - CSV未取得でも処理継続。
 
+---
+
+## 2026-07-29
+
+### Added
+
+- `core/wardrobe.py`を追加。
+- `WARDROBE_ROTATION_REPORT.md`生成を追加。
+- `TODAY_POST.md`に衣装タグと衣装根拠を追加。
+
+### Changed
+
+- `03_SNS事業部/main.py`実行時にSNS_REPORT、TODAY_POST、WARDROBE_ROTATION_REPORTを生成する。
+- 失敗退避フォルダ`fail/`配下の画像は衣装監査の候補件数から除外。
+
+### Safety
+
+- SNS投稿なし。
+- 画像生成なし。
+- ファイル削除なし。
+- 根拠がない衣装は`未取得`。
+
 ## 2026-07-05
 
 ### Added

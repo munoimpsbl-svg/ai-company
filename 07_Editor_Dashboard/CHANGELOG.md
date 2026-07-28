@@ -147,3 +147,65 @@
 - `DASHBOARD_PASSWORD`によるログイン画面を追加。
 - Google OAuth token JSONの環境変数読み込みに対応。
 - `DEPLOY_RENDER.md`を追加。
+## 2026-07-28
+
+- `Company Hub`画面を追加。
+- 携帯表示向けのサマリーカードとレスポンシブCSSを追加。
+- 会社全体の情報集約タブを追加。
+- 今日の流れをCSSアニメーション付きで表示。
+- X結果貼り付け保存機能を追加。
+- X結果をMarkdown / CSVへ蓄積する保存先を追加。
+
+## 2026-07-29
+
+- Command Center / Company Hubのビジュアルを強化。
+- 動きのあるコンソールヘッダーを追加。
+- KPI / SNS / X / SEO / CEO / Driveのナビカードを追加。
+- MIKU / RIO画像プレビューを追加。
+- スマホ向けレスポンシブCSSを追加。
+
+## 2026-07-29
+
+- Command Center / Company HubへAI美女品質監査を追加。
+- AI-VQC、Generation Quality、MIKU固定ルール、RIO固定ルールをダッシュボードへ集約。
+- 本人感未確認、別人化リスク、AI感・不自然表現リスクの集計カードを追加。
+- 要確認画像カードと投稿前チェックを追加。
+- AI COMPANY情報集約へ`AI美女`タブを追加。
+
+## 2026-07-29
+
+- Command Center / Company Hubのビジュアルをさらに強化。
+- 上部に5つの状態カードを追加。
+- 状態カードへ動くゲージとスキャンアニメーションを追加。
+- 画像プレビューを`Creative Deck`表示へ変更。
+- ヒーロー背景へ動くグリッドを追加。
+
+## 2026-07-29
+
+- `AI社員 Live Run`を追加。
+- Runner実行をバックグラウンド起動へ変更。
+- Runner進捗JSONを追加。
+- 実行中のAI社員カードと自動更新を追加。
+- 完了済みRUN_REPORTからAI社員の完了状態を表示。
+
+## 2026-07-29
+
+- `Daily Brief Factory`を追加。
+- P002 / P003 / P004 / CEO_REPORTのDaily Briefカードを追加。
+- `Daily Brief更新`ボタンを追加。
+- Daily Brief生成専用ジョブを追加。
+- Daily Brief生成進捗JSONを追加。
+- 生成ステップのアニメーション表示を追加。
+
+## 2026-07-29
+
+- `成果物`ページを追加。
+- 主要Markdown成果物のカード一覧を追加。
+- 成果物本文の展開表示とダウンロードを追加。
+
+## 2026-07-29
+
+- Command Center / Company Hubへ`衣装ローテ監査`を追加。
+- SNS Todayの投稿カードへ衣装タグと衣装根拠を追加。
+- 成果物ページに`WARDROBE_ROTATION_REPORT`を追加。
+- 採用候補プレビューから`fail/`配下画像を除外。

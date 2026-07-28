@@ -282,3 +282,88 @@ python3 -m streamlit run main.py --server.headless true --server.port 8502
 - `DEPLOY_RENDER.md`へ外部公開手順を追加。
 - 構文確認: `main.py`、Google認証、Drive、Search Console、GA4。
 - ローカル起動確認: `http://127.0.0.1:8510`、`http://192.168.1.9:8510`でHTTP 200。
+## 2026-07-28 Sprint11 Report
+
+- `Company Hub`画面を追加。
+- スマホ向けの会社状態カードを追加。
+- WordPress / Search Console / GA4 / X蓄積サマリーを表示。
+- P002 / P003 / P004 / P005 / P006の状態を集約。
+- 今日の流れをCSSアニメーション付きで表示。
+- X結果の貼り付け保存機能を追加。
+- 保存先は`03_SNS事業部/03_Analytics/X_RESULTS/`。
+- 自動投稿、SNSログイン、WordPress更新、削除は未実行。
+
+## 2026-07-29 Sprint12 Report
+
+- Command Center / Company Hubにビジュアルヘッダーを追加。
+- KPI / SNS / X / SEO / CEO / Driveの色付きナビカードを追加。
+- AI稼働状態のレーダー風アニメーションを追加。
+- 直近のMIKU / RIO候補画像を`Visual Status`として表示。
+- スマホ表示時のカード幅、余白、ヒーロー表示を調整。
+- `main.py`構文チェックとHTTP 200を確認。
+- SNS投稿、SNSログイン、WordPress更新、削除は未実行。
+
+## 2026-07-29 Sprint13 Report
+
+- Command Center / Company Hubへ`AI美女 品質監査`を追加。
+- `AI_VQC.md`、`GENERATION_QUALITY_REPORT.md`、MIKU / RIO固定ルールを読み込み。
+- 画像別品質JSONから本人感未確認、別人化リスク、AI感・不自然表現リスクを集計。
+- 要確認画像をカード表示し、固定ルールを展開表示できるようにした。
+- AI COMPANY情報集約へ`AI美女`タブを追加。
+- 確認結果: 本人感未確認 12件、別人化リスク 14件、AI感・不自然表現リスク 16件。
+- `main.py`構文チェックOK。
+- SNS投稿、SNSログイン、WordPress更新、削除は未実行。
+
+## 2026-07-29 Sprint14 Report
+
+- 上部に`SEO Engine`、`SNS Studio`、`Data Pulse`、`Quality Guard`、`Blocker Watch`を追加。
+- 各カードに色付きグラデーションと動くゲージを追加。
+- 候補画像セクションを`Creative Deck`へ変更。
+- 画像プレビューへSHOTラベルとカテゴリラベルを追加。
+- ヒーロー背景に動くグリッドを追加。
+- スマホ表示時は状態カードを1列表示にするCSSを追加。
+- `main.py`構文チェックOK、`http://localhost:8510` HTTP 200確認。
+- SNS投稿、SNSログイン、WordPress更新、削除は未実行。
+
+## 2026-07-29 Sprint15 Report
+
+- Runner実行ボタンをバックグラウンド実行へ変更。
+- Runner進捗を`.dashboard_jobs/runner_progress.json`へ保存する処理を追加。
+- `AI社員 Live Run`セクションを追加。
+- SNS分析AI、グラビア事業部長AI、KPI分析AI、アダルト事業部長AI、品質監査AI、AI社長、同期AIをカード表示。
+- 作業中はカードが動き、実行中は画面が自動更新される。
+- 完了済みRUN_REPORTから過去の実行結果も表示できる。
+- `main.py`と`06_AI_COMPANY_Runner/main.py`の構文チェックOK。
+- ブラウザ上で`AI社員 Live Run`、各AI社員カードの表示を確認。
+- SNS投稿、WordPress更新、削除は未実行。
+
+## 2026-07-29 Sprint16 Report
+
+- `Daily Brief Factory`をCommand Center / Company Hubへ追加。
+- P002 / P003 / P004 / CEO_REPORTをカード表示。
+- `Daily Brief更新`ボタンを追加。
+- `07_Editor_Dashboard/run_daily_brief_job.py`を追加。
+- Daily Brief生成ジョブの進捗を`.dashboard_jobs/daily_brief_progress.json`へ保存。
+- 入力確認、SNS生成、グラビア生成、アダルト生成、AI社長集約のステップ表示を追加。
+- 実行中は画面が自動更新され、生成ラインが動くようにした。
+- P002の`今日やることTOP3`形式にも対応。
+- `main.py`と`run_daily_brief_job.py`構文チェックOK。
+- ブラウザ上で`Daily Brief Factory`、`Daily Brief更新`、各部署カードの表示を確認。
+- SNS投稿、WordPress更新、削除は未実行。
+
+## 2026-07-29 Sprint17 Report
+
+- 画面切替に`成果物`ページを追加。
+- CEO_REPORT、KPI_DASHBOARD、RUN_REPORT、各部署Daily Brief、SNS_REPORT、TODAY_POST、改善計画、品質レポートを一覧化。
+- 成果物カードへ状態、パス、更新日時を表示。
+- 展開表示でMarkdown本文を確認できるようにした。
+- Markdownダウンロードボタンを追加。
+- 投稿、WordPress更新、削除は未実行。
+
+## 2026-07-29 Wardrobe Rotation Report
+
+- Command Center / Company Hubへ`衣装ローテ監査`を追加。
+- `WARDROBE_ROTATION_REPORT.md`から今日の衣装タグ、根拠、明日の候補、Blockerをカード表示。
+- SNS Todayの投稿カードに衣装タグと衣装根拠を追加。
+- `fail/`配下の画像は採用候補プレビューから除外。
+- SNS投稿、画像生成、WordPress更新、削除は未実行。

@@ -193,3 +193,156 @@ Google Driveを正データとして、SNS分析CSVをビジュアル管理す�
 ```text
 AI_COMPANY_INPUT/03_SNS事業部/03_Analytics/MIKU/X/
 ```
+
+## Sprint11 Company Hub
+
+会社情報を集約する`Company Hub`画面を追加した。
+
+表示:
+
+- スマホ向け会社状態カード
+- WordPress / Search Console / GA4 / X蓄積のサマリー
+- P002 / P003 / P004 / P005 / P006の事業部ステータス
+- 今日の流れをアニメーション付きで表示
+- X結果の貼り付け保存
+- AI COMPANY情報のタブ集約
+
+X結果保存先:
+
+```text
+03_SNS事業部/03_Analytics/X_RESULTS/X_RESULT_LOG.md
+03_SNS事業部/03_Analytics/X_RESULTS/x_results.csv
+```
+
+制約:
+
+- SNS自動投稿禁止
+- SNSログイン操作禁止
+- WordPress更新禁止
+- 削除禁止
+
+## Sprint12 Console Visual Upgrade
+
+Command Center / Company Hubの見た目を強化した。
+
+- 上部に動きのあるコンソールヘッダーを表示
+- KPI / SNS / X / SEO / CEO / Driveの色付きナビカードを表示
+- AI稼働状態をレーダー風アニメーションで表示
+- MIKU / RIOの直近候補画像をVisual Statusとして表示
+- スマホ表示時はカードを1列中心へ自動調整
+
+## Sprint13 AI美女 品質監査
+
+Command Center / Company HubへAI美女作成の品質監査を集約した。
+
+表示:
+
+- 総合判定
+- 本人感未確認
+- 別人化リスク
+- AI感・不自然表現リスク
+- 投稿前チェック
+- 要確認画像
+- AI-VQC / MIKU / RIO固定ルール
+
+## 衣装ローテーション監査
+
+Command Center / Company Hubで`03_SNS事業部/03_Analytics/WARDROBE_ROTATION_REPORT.md`を読み込み、MIKU / RIOの衣装タグ、根拠、明日の候補、Blockerをカード表示する。
+
+表示のみで、SNS投稿、画像生成、ファイル削除は行わない。
+
+入力:
+
+```text
+03_SNS事業部/AI_VQC.md
+03_SNS事業部/03_Analytics/GENERATION_QUALITY_REPORT.md
+03_SNS事業部/01_Characters/MIKU/MIKU_FIXED_RULES.md
+03_SNS事業部/01_Characters/RIO/RIO_BASE_REFERENCE.md
+02_Daily_Output/YYYY-MM-DD/*/reports/image_*_report.json
+```
+
+この画面は投稿前の品質確認だけを目的とする。AI検出回避、SNS自動投稿、画像削除は行わない。
+
+## Sprint14 Visual Boost
+
+Command Center / Company Hubの第一印象を強化した。
+
+追加表示:
+
+- SEO Engine
+- SNS Studio
+- Data Pulse
+- Quality Guard
+- Blocker Watch
+- Creative Deck
+
+上部に色付きの状態カードと動くゲージを追加し、SEO、SNS、KPI、品質監査、Blockerをすぐ判断できるようにした。
+
+## Sprint15 AI社員 Live Run
+
+Runner実行とAI社員アニメーションを連動した。
+
+表示:
+
+- SNS分析AI
+- グラビア事業部長AI
+- KPI分析AI
+- アダルト事業部長AI
+- 品質監査AI
+- AI社長
+- 同期AI
+
+`Runner実行`ボタンを押すとバックグラウンドでRunnerを開始し、`.dashboard_jobs/runner_progress.json`を読み込んで各AI社員の状態を表示する。
+
+状態:
+
+- 待機
+- 作業中
+- 完了
+- 要確認
+
+実行中はアニメーションで現在の進行を見せる。AI社員の進捗に合わせて画面は自動更新される。
+
+## Sprint16 Daily Brief Factory
+
+Daily BriefをCommand Centerへ集約し、生成ラインとして表示する。
+
+表示:
+
+- P002 SNS事業部 Daily Brief
+- P003 グラビア事業部 Daily Brief
+- P004 アダルト事業部 Daily Brief
+- AI社長 CEO_REPORT
+
+`Daily Brief更新`ボタンを押すと、バックグラウンドで以下を順番に実行する。
+
+1. SNS Daily Brief生成
+2. グラビア Daily Brief生成
+3. アダルト Daily Brief生成
+4. CEO_REPORT生成
+
+進捗は`.dashboard_jobs/daily_brief_progress.json`に保存し、画面上では入力確認、SNS生成、グラビア生成、アダルト生成、AI社長集約のステップが動く。生成中は画面が自動更新される。
+
+制約:
+
+- SNS投稿禁止
+- WordPress更新禁止
+- 削除禁止
+
+## Sprint17 成果物ページ
+
+画面切替に`成果物`を追加した。
+
+表示:
+
+- CEO_REPORT
+- KPI_DASHBOARD
+- RUN_REPORT
+- P002 / P003 / P004 DAILY_BRIEF
+- SNS_REPORT
+- TODAY_POST
+- P003改善計画
+- P004 SEO_PLAN
+- Generation Quality / AI_VQC
+
+各成果物はカードで状態、パス、更新日時を表示し、展開して本文確認とダウンロードができる。

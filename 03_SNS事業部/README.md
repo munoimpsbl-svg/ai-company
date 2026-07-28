@@ -146,3 +146,22 @@ AI_COMPANY_INPUT/
 03_SNS事業部/03_Analytics/DRIVE_INPUT_SYNC_RESULT.md
 03_SNS事業部/03_Analytics/DRIVE_INPUT_MANIFEST.json
 ```
+
+## 衣装ローテーション監査
+
+MIKU / RIOの服装が同じになりがちな問題を確認するため、`03_SNS事業部/main.py`実行時に`WARDROBE_ROTATION_REPORT.md`も生成する。
+
+出力:
+
+```text
+03_SNS事業部/03_Analytics/WARDROBE_ROTATION_REPORT.md
+```
+
+判定方法:
+
+- `prompt.txt`
+- `report.md`
+- `status.json`
+- フォルダ名
+
+上記から取得できる範囲で衣装タグを記録する。根拠がない場合は推測せず`未取得`とする。SNS投稿、画像生成、ファイル削除は行わない。

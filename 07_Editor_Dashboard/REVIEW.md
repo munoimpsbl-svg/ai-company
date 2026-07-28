@@ -164,3 +164,70 @@
 - OAuthの対話認証はクラウドで実行せず、token JSONを環境変数から読み込む。
 - Google Driveを正データとし、Render上のローカルファイルは一時領域として扱う。
 - WordPress投稿、削除、SNS自動投稿処理は追加していない。
+## 2026-07-28 CTOレビュー用メモ
+
+- `Company Hub`は表示とローカル記録のみを行う。
+- X結果貼り付けは`X_RESULT_LOG.md`と`x_results.csv`へ保存する。
+- パース対象は表示回数、いいね、リポスト、返信、プロフィールクリック、リンククリック。
+- CSSメディアクエリでスマホ表示時はカードを1列化する。
+- アニメーションは状態表示の視認性向上のみで、外部操作は行わない。
+- SNS投稿、SNSログイン、WordPress更新、削除は未実行。
+
+## 2026-07-29 CTOレビュー用メモ
+
+- 今回の変更はダッシュボード表示の改善のみ。
+- CSSアニメーションはローカル画面内の視認性改善で、外部操作は行わない。
+- 画像表示は既存の`02_Daily_Output`内候補画像を参照する。
+- `main.py`の構文チェックと`localhost:8510`のHTTP応答を確認済み。
+
+## 2026-07-29 AI美女品質監査レビュー
+
+- `AI_VQC.md`とキャラクター固定ルールをCommand Center / Company Hubで確認できる。
+- 画像別品質JSONから本人感レビュー未入力を検出できる。
+- `GENERATION_QUALITY_REPORT.md`のReview Requiredから別人化・不自然表現リスクを補足できる。
+- 投稿前チェックは表示のみで、AI検出回避やSNS投稿操作は行わない。
+- 要確認画像がない場合もエラー停止せず、正常メッセージを表示する。
+- WordPress更新、SNS投稿、画像削除は未実行。
+
+## 2026-07-29 Visual Boostレビュー
+
+- `SEO Engine`、`SNS Studio`、`Data Pulse`、`Quality Guard`、`Blocker Watch`の表示を確認。
+- Streamlit上でHTMLが文字として漏れないことを確認。
+- `Creative Deck`にSHOTラベル付きで候補画像が表示されることを確認。
+- スマホ幅では状態カードが1列になる。
+- アニメーションは画面内表示のみで、外部サービス操作は行わない。
+- WordPress更新、SNS投稿、削除は未実行。
+
+## 2026-07-29 AI社員 Live Runレビュー
+
+- `AI社員 Live Run`がCommand Centerで表示されることを確認。
+- RUN_REPORTから完了済みAI社員の状態を表示できる。
+- Runner実行中は`.dashboard_jobs/runner_progress.json`を読み、作業中カードへ切り替わる。
+- 実行中はAI社員の進捗に合わせて画面が自動更新される。
+- Runnerはエラーがあっても次工程を実行する既存仕様を維持。
+- SNS投稿、WordPress更新、削除処理は追加していない。
+
+## 2026-07-29 Daily Brief Factoryレビュー
+
+- `Daily Brief Factory`がCommand Centerに表示されることを確認。
+- P002 / P003 / P004 / CEO_REPORTが提出済みカードとして表示される。
+- P002の`### Priority 1`形式、P003/P004の`①`形式、CEO_REPORTの総評形式を読み取れる。
+- `Daily Brief更新`ボタンはバックグラウンドジョブを開始し、画面は進捗JSONを読む。
+- 実行中は生成進捗に合わせて画面が自動更新される。
+- Daily Brief生成ジョブにSNS投稿、WordPress更新、削除処理は含めていない。
+
+## 2026-07-29 成果物ページレビュー
+
+- `成果物`ページで主要Markdown成果物を一覧確認できる。
+- 存在しない成果物は`未取得`として表示する。
+- 成果物本文は展開表示のみで、元ファイルを書き換えない。
+- ダウンロードはブラウザへの読み取り提供のみ。
+- 投稿、WordPress更新、削除処理は追加していない。
+
+## 2026-07-29 衣装ローテ監査レビュー
+
+- Command Center / Company Hubで`衣装ローテ監査`を表示できる。
+- `WARDROBE_ROTATION_REPORT.md`の今日の衣装タグと明日の候補をカード化できる。
+- SNS Todayで衣装タグと衣装根拠を確認できる。
+- 根拠がない衣装は`未取得`として表示される。
+- 表示のみで、SNS投稿、画像生成、削除処理は追加していない。

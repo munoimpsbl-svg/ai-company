@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from datetime import datetime
+import json
 from pathlib import Path
 import subprocess
 import sys
@@ -70,20 +71,58 @@ def main() -> int:
     results = []
 
     for step in STEPS:
+        _write_progress(workspace_root, "running", run_start, step.name, results)
         results.append(_run_step(step, workspace_root))
+        _write_progress(workspace_root, "running", run_start, step.name, results)
 
     run_end = datetime.now()
     report = _build_run_report(run_start, run_end, results, [])
     report_path = _save_report(workspace_root, report)
     log_path = _save_daily_log(workspace_root, report, run_start)
+    _write_progress(workspace_root, "syncing", run_start, "Google Drive保存", results)
     sync_results = sync_runner_artifacts(workspace_root)
     final_report = _build_run_report(run_start, run_end, results, sync_results)
     report_path = _save_report(workspace_root, final_report)
     log_path = _save_daily_log(workspace_root, final_report, run_start)
+    _write_progress(workspace_root, "completed", run_start, "完了", results)
 
     print(f"RUN_REPORT saved: {report_path}")
     print(f"RUN_LOG saved: {log_path}")
     return 0
+
+
+def _write_progress(
+    workspace_root: Path,
+    status: str,
+    run_start: datetime,
+    current_step: str,
+    results: List[StepResult],
+) -> None:
+    progress_dir = workspace_root / ".dashboard_jobs"
+    progress_dir.mkdir(parents=True, exist_ok=True)
+    completed = {result.name: result for result in results}
+    steps = []
+    for step in STEPS:
+        result = completed.get(step.name)
+        if result:
+            step_status = "success" if result.success else "failed"
+        elif step.name == current_step and status == "running":
+            step_status = "running"
+        else:
+            step_status = "pending"
+        steps.append({"name": step.name, "status": step_status})
+
+    payload = {
+        "status": status,
+        "started_at": run_start.isoformat(timespec="seconds"),
+        "updated_at": datetime.now().isoformat(timespec="seconds"),
+        "current_step": current_step,
+        "steps": steps,
+    }
+    (progress_dir / "runner_progress.json").write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
 
 
 def _run_step(step: RunnerStep, cwd: Path) -> StepResult:
