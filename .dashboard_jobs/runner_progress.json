@@ -1,0 +1,32 @@
+{
+  "status": "completed",
+  "started_at": "2026-07-30T05:41:41",
+  "updated_at": "2026-07-30T05:47:29",
+  "current_step": "完了",
+  "steps": [
+    {
+      "name": "P002 SNS事業部",
+      "status": "success"
+    },
+    {
+      "name": "P003 グラビア事業部",
+      "status": "success"
+    },
+    {
+      "name": "KPI Dashboard",
+      "status": "success"
+    },
+    {
+      "name": "P004 アダルト事業部",
+      "status": "success"
+    },
+    {
+      "name": "GPT Image Quality",
+      "status": "success"
+    },
+    {
+      "name": "P005 AI社長",
+      "status": "success"
+    }
+  ]
+}

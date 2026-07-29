@@ -10,7 +10,7 @@
 
 ## Executive Summary
 
-- CSV取得成功: 0件
+- CSV取得成功: 1件
 - CSV取得失敗: 0件
 - Error: なし
 
@@ -18,7 +18,7 @@
 
 | File | Drive ID | Local Path | Status | Error |
 |---|---|---|---|---|
-| 未取得 | 未取得 | 未取得 | 未取得 | CSVファイルなし |
+| account_overview_analytics.csv | 1UYHIe20mcZ9mSEGq_XYUTSLojV9yro0L | 03_SNS事業部/03_Analytics/MIKU/X/account_overview_analytics.csv | SUCCESS | なし |
 
 ## Rules
 

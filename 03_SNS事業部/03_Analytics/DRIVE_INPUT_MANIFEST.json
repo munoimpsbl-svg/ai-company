@@ -1,10 +1,18 @@
 {
   "source_of_truth": "google_drive",
-  "synced_at": "2026-07-29T06:54:22",
+  "synced_at": "2026-07-30T05:41:46",
   "google_drive_folder": "AI_COMPANY_INPUT/03_SNS事業部/03_Analytics/MIKU/X",
   "folder_id": "1dCHBt-5fMzT2yZErb0ZnZ1ZuyfDsXtzF",
   "local_mirror": "03_SNS事業部/03_Analytics/MIKU/X",
   "success": true,
   "error": "",
-  "files": []
+  "files": [
+    {
+      "name": "account_overview_analytics.csv",
+      "file_id": "1UYHIe20mcZ9mSEGq_XYUTSLojV9yro0L",
+      "local_path": "03_SNS事業部/03_Analytics/MIKU/X/account_overview_analytics.csv",
+      "success": true,
+      "error": ""
+    }
+  ]
 }

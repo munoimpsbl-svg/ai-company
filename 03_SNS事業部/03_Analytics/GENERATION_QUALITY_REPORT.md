@@ -1,13 +1,13 @@
 # GENERATION QUALITY REPORT
 
-更新日時: 2026-07-22T11:51:52
+更新日時: 2026-07-30T05:42:05
 
 ## Summary
 
 - Status: 正常
-- Scanned assets: 479
-- Experiments: 96
-- Average score: 87.7
+- Scanned assets: 618
+- Experiments: 137
+- Average score: 84.8
 - DB: `03_SNS事業部/03_Analytics/generation_quality.sqlite3`
 - Generation engine: `gpt_image`
 
@@ -19,26 +19,26 @@
 
 | score | status | date | character | slot | image | warnings |
 | ---: | --- | --- | --- | --- | --- | --- |
+| 100 | ok | 2026-07-29 | RIO | night | `02_Daily_Output/2026-07-29/RIO/night/images/2026-07-29_RIO_night_03.png` | - |
+| 100 | ok | 2026-07-29 | RIO | night | `02_Daily_Output/2026-07-29/RIO/night/images/2026-07-29_RIO_night_02.png` | - |
+| 100 | ok | 2026-07-29 | RIO | night | `02_Daily_Output/2026-07-29/RIO/night/images/2026-07-29_RIO_night_01.png` | - |
+| 100 | ok | 2026-07-29 | RIO | morning | `02_Daily_Output/2026-07-29/RIO/morning/images/2026-07-29_RIO_morning_03.png` | - |
+| 100 | ok | 2026-07-29 | RIO | morning | `02_Daily_Output/2026-07-29/RIO/morning/images/2026-07-29_RIO_morning_02.png` | - |
+| 100 | ok | 2026-07-29 | RIO | morning | `02_Daily_Output/2026-07-29/RIO/morning/images/2026-07-29_RIO_morning_01.png` | - |
+| 100 | ok | 2026-07-29 | MIKU | night | `02_Daily_Output/2026-07-29/MIKU/night/images/2026-07-29_MIKU_night_03.png` | - |
+| 100 | ok | 2026-07-29 | MIKU | night | `02_Daily_Output/2026-07-29/MIKU/night/images/2026-07-29_MIKU_night_02.png` | - |
+| 100 | ok | 2026-07-29 | MIKU | night | `02_Daily_Output/2026-07-29/MIKU/night/images/2026-07-29_MIKU_night_01.png` | - |
+| 100 | ok | 2026-07-29 | MIKU | morning | `02_Daily_Output/2026-07-29/MIKU/morning/images/2026-07-29_MIKU_morning_outfit_redo_03.png` | - |
+| 100 | ok | 2026-07-29 | MIKU | morning | `02_Daily_Output/2026-07-29/MIKU/morning/images/2026-07-29_MIKU_morning_outfit_redo_02.png` | - |
+| 100 | ok | 2026-07-29 | MIKU | morning | `02_Daily_Output/2026-07-29/MIKU/morning/images/2026-07-29_MIKU_morning_outfit_redo_01.png` | - |
+| 100 | ok | 2026-07-29 | MIKU | morning | `02_Daily_Output/2026-07-29/MIKU/morning/images/2026-07-29_MIKU_morning_03.png` | - |
+| 100 | ok | 2026-07-29 | MIKU | morning | `02_Daily_Output/2026-07-29/MIKU/morning/images/2026-07-29_MIKU_morning_02.png` | - |
+| 100 | ok | 2026-07-29 | MIKU | morning | `02_Daily_Output/2026-07-29/MIKU/morning/images/2026-07-29_MIKU_morning_01.png` | - |
 | 100 | ok | 2026-07-19 | RIO | night_facefix_roomwear | `02_Daily_Output/2026-07-19/RIO/night_facefix_roomwear/images/2026-07-19_RIO_night_facefix_roomwear_05.png` | - |
 | 100 | ok | 2026-07-19 | RIO | night_facefix_roomwear | `02_Daily_Output/2026-07-19/RIO/night_facefix_roomwear/images/2026-07-19_RIO_night_facefix_roomwear_04.png` | - |
 | 100 | ok | 2026-07-19 | RIO | night_facefix_roomwear | `02_Daily_Output/2026-07-19/RIO/night_facefix_roomwear/images/2026-07-19_RIO_night_facefix_roomwear_03.png` | - |
 | 100 | ok | 2026-07-19 | RIO | night_facefix_roomwear | `02_Daily_Output/2026-07-19/RIO/night_facefix_roomwear/images/2026-07-19_RIO_night_facefix_roomwear_02.png` | - |
 | 100 | ok | 2026-07-19 | RIO | night_facefix_roomwear | `02_Daily_Output/2026-07-19/RIO/night_facefix_roomwear/images/2026-07-19_RIO_night_facefix_roomwear_01.png` | - |
-| 100 | ok | 2026-07-19 | RIO | night_dinner_sendai_from02_v2 | `02_Daily_Output/2026-07-19/RIO/night_dinner_sendai_from02_v2/images/2026-07-19_RIO_night_dinner_sendai_from02_v2_04.png` | - |
-| 100 | ok | 2026-07-19 | RIO | night_dinner_sendai_from02_v2 | `02_Daily_Output/2026-07-19/RIO/night_dinner_sendai_from02_v2/images/2026-07-19_RIO_night_dinner_sendai_from02_v2_03.png` | - |
-| 100 | ok | 2026-07-19 | RIO | night_dinner_sendai_from02_v2 | `02_Daily_Output/2026-07-19/RIO/night_dinner_sendai_from02_v2/images/2026-07-19_RIO_night_dinner_sendai_from02_v2_02.png` | - |
-| 100 | ok | 2026-07-19 | RIO | night_dinner_sendai_from02_v2 | `02_Daily_Output/2026-07-19/RIO/night_dinner_sendai_from02_v2/images/2026-07-19_RIO_night_dinner_sendai_from02_v2_01.png` | - |
-| 100 | ok | 2026-07-17 | RIO | room | `02_Daily_Output/2026-07-17/RIO/room/images/2026-07-17_RIO_room_03.png` | - |
-| 100 | ok | 2026-07-17 | RIO | room | `02_Daily_Output/2026-07-17/RIO/room/images/2026-07-17_RIO_room_02.png` | - |
-| 100 | ok | 2026-07-17 | RIO | room | `02_Daily_Output/2026-07-17/RIO/room/images/2026-07-17_RIO_room_01.png` | - |
-| 100 | ok | 2026-07-17 | RIO | outing | `02_Daily_Output/2026-07-17/RIO/outing/images/2026-07-17_RIO_outing_05.png` | - |
-| 100 | ok | 2026-07-17 | RIO | outing | `02_Daily_Output/2026-07-17/RIO/outing/images/2026-07-17_RIO_outing_04.png` | - |
-| 100 | ok | 2026-07-17 | RIO | outing | `02_Daily_Output/2026-07-17/RIO/outing/images/2026-07-17_RIO_outing_03.png` | - |
-| 100 | ok | 2026-07-17 | RIO | outing | `02_Daily_Output/2026-07-17/RIO/outing/images/2026-07-17_RIO_outing_02.png` | - |
-| 100 | ok | 2026-07-17 | RIO | outing | `02_Daily_Output/2026-07-17/RIO/outing/images/2026-07-17_RIO_outing_01.png` | - |
-| 100 | ok | 2026-07-17 | RIO | gym | `02_Daily_Output/2026-07-17/RIO/gym/images/2026-07-17_RIO_gym_03.png` | - |
-| 100 | ok | 2026-07-17 | RIO | gym | `02_Daily_Output/2026-07-17/RIO/gym/images/2026-07-17_RIO_gym_02.png` | - |
-| 100 | ok | 2026-07-17 | RIO | gym | `02_Daily_Output/2026-07-17/RIO/gym/images/2026-07-17_RIO_gym_01.png` | - |
 
 ## Review Required
 

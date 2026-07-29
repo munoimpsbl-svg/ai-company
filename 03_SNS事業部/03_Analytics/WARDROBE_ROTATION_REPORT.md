@@ -2,7 +2,7 @@
 
 日付
 
-2026-07-29
+2026-07-30
 
 ---
 
@@ -17,19 +17,16 @@
 
 | キャラクター | 枠 | 衣装タグ | 根拠 | 画像数 | 信頼度 |
 |---|---|---|---|---:|---|
-| MIKU | morning | セミカジュアル仕事服 / short-skirt / light-blue・navy | prompt.txt / report.md / outfit_redo | 6 | 中 |
-| MIKU | night | ジム・ヨガ / navy・black・white | prompt.txt / report.md | 3 | 中 |
-| RIO | morning | 外出服 / summer-casual / light-blue・black | prompt.txt / report.md | 3 | 中 |
-| RIO | night | 部屋着 / charcoal・black | prompt.txt / report.md | 3 | 中 |
+| 未取得 | 未取得 | 未取得 | 当日出力未取得 | 0 | 低 |
 
 ## 直近ローテーション
 
 | 日付 | キャラクター | 枠 | 衣装タグ | 画像数 |
 |---|---|---|---|---:|
-| 2026-07-29 | RIO | night | 部屋着 / charcoal・black | 3 |
-| 2026-07-29 | RIO | morning | 外出服 / summer-casual / light-blue・black | 3 |
-| 2026-07-29 | MIKU | night | ジム・ヨガ / navy・black・white | 3 |
-| 2026-07-29 | MIKU | morning | セミカジュアル仕事服 / short-skirt / light-blue・navy | 6 |
+| 2026-07-29 | RIO | night | ジム・ヨガ / black・white | 3 |
+| 2026-07-29 | RIO | morning | 部屋着 / black・white | 3 |
+| 2026-07-29 | MIKU | night | ジム・ヨガ / black・white | 3 |
+| 2026-07-29 | MIKU | morning | 仕事服 / black・white | 6 |
 | 2026-07-28 | RIO | night | 未取得 | 3 |
 | 2026-07-28 | RIO | morning | 未取得 | 3 |
 | 2026-07-28 | MIKU | night | 未取得 | 3 |
@@ -79,33 +76,21 @@
 | 2026-07-17 | MIKU | night_return | 仕事服 / black・white | 5 |
 | 2026-07-17 | MIKU | morning_overseas_phonefix | 未取得 | 5 |
 | 2026-07-17 | MIKU | morning_overseas | 水着・海 / black・white | 5 |
-| 2026-07-16 | RIO | shopping_fixed_pose_keep_outfit_ref | 外出服 | 5 |
-| 2026-07-16 | RIO | shopping_fixed_outfit_ref | 外出服 | 5 |
-| 2026-07-16 | RIO | shopping_fixed | 外出服 | 5 |
-| 2026-07-16 | RIO | school | 未取得 | 5 |
-| 2026-07-16 | RIO | morning_outfit_ref | 未取得 | 5 |
-| 2026-07-16 | RIO | images | 未取得 | 5 |
-| 2026-07-16 | MIKU | transfer_fixed | 未取得 | 5 |
-| 2026-07-16 | MIKU | transfer | 未取得 | 4 |
-| 2026-07-16 | MIKU | night_dinner_fixed | 外出服 | 5 |
-| 2026-07-16 | MIKU | night_dinner | 外出服 | 3 |
-| 2026-07-16 | MIKU | images | 未取得 | 5 |
 
 ## 明日の衣装候補
 
 | キャラクター | 推奨衣装 | 理由 |
 |---|---|---|
 | MIKU | カジュアル | 直近4枠で使用が少ないため、見た目の単調さを減らせる。 |
-| RIO | 部屋着 | 直近4枠で使用が少ないため、見た目の単調さを減らせる。 |
+| RIO | カジュアル | 直近4枠で使用が少ないため、見た目の単調さを減らせる。 |
 
 ## Blocker
 
-- MIKU/morning: 初回候補は前日服と近かったため、outfit_redoを追加済み。ただしWARDROBE_GENERATION_RULES.mdの「カジュアル」推奨に対しては仕事服寄りのため、厳密適用なら追加生成が必要。
-- RIO/morning: Daily Briefの学校外出テーマに従ったため外出服。WARDROBE_GENERATION_RULES.mdの「部屋着」推奨を厳密適用するなら追加生成が必要。
+- 当日のMIKU/RIO画像フォルダ未取得
 
 ## 制約確認
 
 - SNS投稿: 未実行
-- 画像生成: 実行済み
+- 画像生成: 未実行
 - ファイル削除: 未実行
 - 分析のみ: OK
