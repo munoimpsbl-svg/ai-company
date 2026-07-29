@@ -8,6 +8,8 @@ AI COMPANYの制作・開発作業は [00_MASTER_INSTRUCTION.md](/Users/izumisub
 
 作業開始時は以下を確認します。
 
+- [00_AI_COMPANY_ORG.md](/Users/izumisub/Documents/ai会社/00_AI_COMPANY_ORG.md)
+- [00_PROJECT_REGISTRY.md](/Users/izumisub/Documents/ai会社/00_PROJECT_REGISTRY.md)
 - [01_PROJECT_HANDOFF.md](/Users/izumisub/Documents/ai会社/01_PROJECT_HANDOFF.md)
 - [02_WORKFLOW.md](/Users/izumisub/Documents/ai会社/02_WORKFLOW.md)
 - [03_GOOGLE_DRIVE_RULE.md](/Users/izumisub/Documents/ai会社/03_GOOGLE_DRIVE_RULE.md)

@@ -1,0 +1,61 @@
+{
+  "instructions": [
+    "生成後に必ず目視で入力する。未入力の画像はAI-VQCでPASSにしない。",
+    "identity_scoreは0-100。90以上=本人感強い、80-89=採用前確認、65-79=再生成候補、64以下=FAIL。",
+    "衣装資料・構図資料の顔に引っ張られている場合はface_matches_base=falseにする。",
+    "身体破綻、自撮り矛盾、暗すぎる写真などがある場合は該当項目をfalseにする。"
+  ],
+  "images": {
+    "2026-07-29_MIKU_morning_01.png": {
+      "identity_score": null,
+      "base_reference_used": false,
+      "face_matches_base": false,
+      "age_matches": false,
+      "hair_matches": false,
+      "body_matches": false,
+      "outfit_reference_limited_to_clothes": false,
+      "physical_integrity_ok": false,
+      "hands_limbs_ok": false,
+      "selfie_logic_ok": false,
+      "outfit_continuity_ok": false,
+      "background_text_logo_ok": false,
+      "scene_physics_ok": false,
+      "lighting_ok": false,
+      "notes": ""
+    },
+    "2026-07-29_MIKU_morning_02.png": {
+      "identity_score": null,
+      "base_reference_used": false,
+      "face_matches_base": false,
+      "age_matches": false,
+      "hair_matches": false,
+      "body_matches": false,
+      "outfit_reference_limited_to_clothes": false,
+      "physical_integrity_ok": false,
+      "hands_limbs_ok": false,
+      "selfie_logic_ok": false,
+      "outfit_continuity_ok": false,
+      "background_text_logo_ok": false,
+      "scene_physics_ok": false,
+      "lighting_ok": false,
+      "notes": ""
+    },
+    "2026-07-29_MIKU_morning_03.png": {
+      "identity_score": null,
+      "base_reference_used": false,
+      "face_matches_base": false,
+      "age_matches": false,
+      "hair_matches": false,
+      "body_matches": false,
+      "outfit_reference_limited_to_clothes": false,
+      "physical_integrity_ok": false,
+      "hands_limbs_ok": false,
+      "selfie_logic_ok": false,
+      "outfit_continuity_ok": false,
+      "background_text_logo_ok": false,
+      "scene_physics_ok": false,
+      "lighting_ok": false,
+      "notes": ""
+    }
+  }
+}

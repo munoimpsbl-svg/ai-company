@@ -98,3 +98,9 @@
 - WordPress削除: 未実行
 - SNS投稿: 未実行
 - 解析のみ
+## 2026-07-29 記事下書き追加
+
+- `ARTICLE_QUEUE.md`と`ARTICLE_DRAFTS/A-001.md`を追加。
+- `create_article_drafts.py`でWordPress下書き作成に対応。
+- dry-run結果: GO対象0件、下書き作成0件。
+- 公開、既存記事更新、削除、カテゴリ・タグ新規作成は未実行。

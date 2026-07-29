@@ -154,3 +154,24 @@ Google Drive未接続時はP001のローカルフォールバックにより`out
 ```text
 P003_WORDPRESS_URL=https://example.com
 ```
+## 記事下書き追加仕様
+
+P003は`ARTICLE_QUEUE.md`を読み込み、`編集長確認欄`が`GO`の行のみWordPressへ下書き作成する。
+
+入力:
+
+- `ARTICLE_QUEUE.md`
+- `ARTICLE_DRAFTS/*.md`
+
+出力:
+
+- `ARTICLE_DRAFT_RESULT.md`
+
+制約:
+
+- WordPress作成ステータスは`draft`のみ。
+- 公開は禁止。
+- 既存記事更新は禁止。
+- 削除は禁止。
+- カテゴリ・タグの新規作成は禁止。
+- 推測で本文を生成しない。

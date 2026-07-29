@@ -1,0 +1,18 @@
+Date: 2026-07-29
+Character: RIO
+Slot: night
+
+Wardrobe theme:
+- WARDROBE_GENERATION_RULES.md: RIO roomwear, do not mix outside clothes or gym clothes.
+- Scene: simple one-room apartment, relaxing after school.
+- Same series outfit: loose dark charcoal T-shirt, black lounge shorts, no shoes, no bag.
+
+Identity and fixed rules:
+- RIO is an adult Japanese woman, age 22.
+- Use RIO_base_reference_2026-07-12.jpg as the strict identity base.
+- Do not let outfit, quality, or composition references change face, age, body, or hair.
+- Normal selfie: phone must be outside the frame.
+
+Wardrobe continuity:
+- Same series should keep dark charcoal T-shirt, black lounge shorts, no shoes, and no bag.
+- Do not mix school outing clothes, gymwear, shoulder bag, or shoes into roomwear scene.

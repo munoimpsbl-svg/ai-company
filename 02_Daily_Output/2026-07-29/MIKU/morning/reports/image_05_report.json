@@ -1,0 +1,77 @@
+{
+  "file_name": "2026-07-29_MIKU_morning_outfit_redo_02.png",
+  "source_path": "02_Daily_Output/2026-07-29/MIKU/morning/images/2026-07-29_MIKU_morning_outfit_redo_02.png",
+  "character": "MIKU",
+  "status": "FAIL",
+  "scores": {
+    "person": 46,
+    "object": 80,
+    "background": 68,
+    "photo_quality": 78,
+    "character_consistency": 60
+  },
+  "identity_review_required": true,
+  "identity_review_score": null,
+  "identity_review_source": "",
+  "identity_review_items": {},
+  "metrics": {
+    "width": 1086,
+    "height": 1448,
+    "megapixels": 1.57,
+    "aspect_ratio": 0.75,
+    "file_size_bytes": 3186788,
+    "bytes_per_megapixel": 2026538,
+    "exif_cleaned": true,
+    "luminance_min": 0,
+    "luminance_max": 255,
+    "luminance_range": 255,
+    "luminance_mean": 113.37,
+    "luminance_stddev": 51.78,
+    "edge_mean": 32.76,
+    "context_chars": 3084,
+    "problem_marker_lines": 0,
+    "person_problem_hits": 0,
+    "object_problem_hits": 0,
+    "background_problem_hits": 0,
+    "consistency_problem_hits": 0,
+    "resolution_component": 92,
+    "aspect_ratio_component": 100,
+    "file_size_component": 100,
+    "contrast_component": 100,
+    "edge_component": 72,
+    "exif_component": 100
+  },
+  "critical_errors": [],
+  "person_findings": [
+    "本人感の目視レビュー未記録: 自動PASS禁止",
+    "目視破綻レビュー未入力: 身体・手足・首肩・膝足先の破綻チェック",
+    "目視破綻レビュー未入力: 手指・腕・脚の接続チェック"
+  ],
+  "object_findings": [
+    "目視破綻レビュー未入力: 自撮り時のスマホ・腕・反射整合性チェック"
+  ],
+  "background_findings": [
+    "目視破綻レビュー未入力: 背景文字・ロゴ・固有名詞チェック",
+    "目視破綻レビュー未入力: 場所・器具・家具・床・鏡の物理整合性チェック"
+  ],
+  "photo_quality_findings": [
+    "解像度OK: 1086x1448 / component=92",
+    "EXIF削除済み / component=100",
+    "エッジ量確認: edge_mean=32.76 / component=72",
+    "目視破綻レビュー未入力: 場面に対する明るさ・露出チェック"
+  ],
+  "character_consistency_findings": [
+    "identity_review.json または画像別_notes.jsonで本人感点数が未入力",
+    "目視破綻レビュー未入力: 同一シリーズ内の服装・髪型・小物連動チェック"
+  ],
+  "retry_required": true,
+  "retry_instruction": "手と小物の接触を単純化し、スマホやバッグを画角外または自然な位置へ移す。人物、服、場所、テーマは維持する。",
+  "audited_at": "2026-07-29T07:24:34",
+  "score_summary": {
+    "average": 66.4,
+    "minimum": 46,
+    "pass_threshold_minimum": 80,
+    "pass_threshold_average": 85,
+    "fail_threshold_minimum": 64
+  }
+}

@@ -1,0 +1,19 @@
+Date: 2026-07-29
+Character: MIKU
+Slot: night
+
+Wardrobe theme:
+- Daily Brief scene: night gym to reset mind and body.
+- Outfit category: gym / fitness.
+- Same series outfit: dark navy fitted workout top, black high-waist leggings, white towel, black fitness watch.
+
+Identity and fixed rules:
+- MIKU is an adult Japanese woman, age 35.
+- Mask is mandatory.
+- Use MIKU base reference for face, age, body, hair, and identity.
+- Do not let outfit references change face, age, body, or hair.
+- Normal selfie: phone must be outside the frame.
+
+Wardrobe continuity:
+- Do not mix work jacket, office bag, handbag, skirt, or casual roomwear into the gym scene.
+- Same series should keep gym top, leggings, towel, and watch consistent.

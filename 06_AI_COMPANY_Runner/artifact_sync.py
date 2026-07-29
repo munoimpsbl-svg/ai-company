@@ -24,6 +24,8 @@ TARGET_FILENAMES = {
     "GENERATION_QUALITY_REPORT.md",
     "DRIVE_INPUT_SYNC_RESULT.md",
     "DRIVE_INPUT_MANIFEST.json",
+    "ARTICLE_QUEUE.md",
+    "ARTICLE_DRAFT_RESULT.md",
     "README.md",
     "SPEC.md",
     "TASK.md",
@@ -103,7 +105,7 @@ def _collect_artifacts(workspace_root: Path) -> List[Path]:
         relative_path = path.relative_to(workspace_root)
         if _is_ignored(relative_path):
             continue
-        if path.name in TARGET_FILENAMES:
+        if path.name in TARGET_FILENAMES or _is_article_draft(relative_path):
             artifacts.append(path)
     return sorted(set(artifacts), key=lambda item: str(item))
 
@@ -149,3 +151,7 @@ def _is_ignored(path: Path) -> bool:
         or (part.startswith(".") and part not in ALLOWED_HIDDEN_PARTS)
         for part in path.parts
     )
+
+
+def _is_article_draft(path: Path) -> bool:
+    return "ARTICLE_DRAFTS" in path.parts and path.suffix.lower() == ".md"

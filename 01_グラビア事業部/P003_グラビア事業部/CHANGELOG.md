@@ -224,3 +224,11 @@
 - `execute_title_improvement.py`と`TITLE_IMPROVEMENT_RESULT.md`を追加。
 - `IMPROVEMENT_BACKLOG.md`でタイトル改善を効果測定中へ移行。
 - P003 REPORT / DAILY_BRIEF / KPI / CEO_REPORTを再生成。
+
+## 2026-07-29
+
+- WordPress記事下書き追加フローを追加。
+- `ARTICLE_QUEUE.md`、`ARTICLE_DRAFTS/G-001.md`、`create_article_drafts.py`を追加。
+- `編集長確認欄=GO`の行だけ下書き作成対象にする。
+- dry-runでWordPress認証と処理経路を確認。
+- 公開、既存記事更新、削除、カテゴリ・タグ新規作成は未実行。

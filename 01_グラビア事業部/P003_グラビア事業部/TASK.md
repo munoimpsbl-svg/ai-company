@@ -431,3 +431,29 @@ Command Centerのタスク単位GOを、改善PLANの記事単位GOへ反映し�
 - タグ変更禁止
 - 投稿禁止
 - 削除禁止
+
+## 2026-07-29 TASK-204 記事下書き追加
+
+Status
+DONE
+
+目的
+
+グラビア事業部の記事候補をWordPressへ下書きとして追加できる状態にする。
+
+成果物
+
+- `ARTICLE_QUEUE.md`
+- `ARTICLE_DRAFTS/G-001.md`
+- `create_article_drafts.py`
+- `ARTICLE_DRAFT_RESULT.md`
+
+完了条件
+
+- [x] 編集長GO行のみ対象にする
+- [x] WordPress作成ステータスを`draft`に固定する
+- [x] 公開しない
+- [x] 既存記事を更新しない
+- [x] 削除しない
+- [x] カテゴリ・タグを新規作成しない
+- [x] dry-runで認証と処理経路を確認する

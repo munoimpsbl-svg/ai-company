@@ -1,0 +1,20 @@
+Date: 2026-07-29
+Character: MIKU
+Slot: morning
+
+Wardrobe theme:
+- Daily Brief scene: many meetings, no photos inside the office.
+- Correct wardrobe priority: work outfit, while avoiding previous-day duplication and keeping the skirt slightly short.
+- Current correction candidate outfit: light-blue short-sleeve blouse, dark navy short skirt, black belt, black office bag, simple black watch.
+
+Identity and fixed rules:
+- MIKU is an adult Japanese woman, age 35.
+- Mask is mandatory.
+- Use MIKU base reference for face, age, body, hair, and identity.
+- Do not let outfit references change face, age, body, or hair.
+- Normal selfie: phone must be outside the frame.
+
+Wardrobe continuity:
+- Same series should keep blouse color, skirt color, black bag, black belt, and watch consistent.
+- Do not use previous-day white blouse plus beige/gray skirt.
+- Do not mix office scene with indoor office photography.

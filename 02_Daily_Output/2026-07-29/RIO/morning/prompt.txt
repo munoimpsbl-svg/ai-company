@@ -1,0 +1,18 @@
+Date: 2026-07-29
+Character: RIO
+Slot: morning
+
+Wardrobe theme:
+- Daily Brief scene: going to school to submit an assignment.
+- WARDROBE_GENERATION_RULES.md recommends RIO as roomwear for the next rotation; however this slot was generated as an outside school scene.
+- Current outfit: light-blue sleeveless summer knit top, black shorts, black small shoulder bag, white socks, simple sneakers.
+
+Identity and fixed rules:
+- RIO is an adult Japanese woman, age 22.
+- Use RIO_base_reference_2026-07-12.jpg as the strict identity base.
+- Do not let outfit, quality, or composition references change face, age, body, or hair.
+- Normal selfie: phone must be outside the frame.
+
+Wardrobe continuity:
+- Same series should keep top, shorts, bag, socks, shoes, and hairstyle consistent.
+- Do not mix gymwear or roomwear into this school/outside scene.
