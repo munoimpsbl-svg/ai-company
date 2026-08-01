@@ -171,22 +171,40 @@ function buildBricks() {
 
 function cameraProject(x, y) {
   const w = canvas.clientWidth, h = canvas.clientHeight;
-  const t = Math.max(0, Math.min(1, y / (h * .92)));
-  const scale = .52 + t * .58;
-  return { x: w / 2 + (x - w / 2) * scale, y: h * .12 + t * h * .76, scale };
+  const horizon = h * .13;
+  const depth = Math.max(0, Math.min(1, y / (h * .92)));
+  // Perspective camera: the playfield narrows toward the vanishing point.
+  const scale = .30 + Math.pow(depth, .72) * .88;
+  const screenY = horizon + Math.pow(depth, .78) * (h * .78);
+  return { x: w / 2 + (x - w / 2) * scale, y: screenY, scale, depth };
 }
 function drawMountainClimbSurface(w, h) {
-  const horizon = h * .12, base = h * .94, center = w / 2;
+  const horizon = h * .13, base = h * .97, center = w / 2;
+  const nearHalf = w * .49, farHalf = w * .045;
+  const quad = (x1, y1, x2, y2, x3, y3, x4, y4, fill) => {
+    ctx.fillStyle = fill; ctx.beginPath();
+    ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.lineTo(x3, y3); ctx.lineTo(x4, y4);
+    ctx.closePath(); ctx.fill();
+  };
   ctx.save();
-  ctx.fillStyle = 'rgba(8,12,20,.42)';
-  ctx.beginPath(); ctx.moveTo(center - 8, horizon); ctx.lineTo(w * .04, base); ctx.lineTo(w * .96, base); ctx.lineTo(center + 8, horizon); ctx.closePath(); ctx.fill();
-  ctx.strokeStyle = 'rgba(199,255,77,.22)'; ctx.lineWidth = 1.5;
-  for (let i = 0; i <= 8; i++) {
-    const t = i / 8, y = horizon + Math.pow(t, 1.7) * (base - horizon), half = 12 + t * w * .44;
+  // Raised playfield, visible as a sloped 3D plane.
+  quad(center - farHalf, horizon, center + farHalf, horizon, center + nearHalf, base, center - nearHalf, base, 'rgba(10,16,25,.92)');
+  // Solid canyon walls make the camera height and angle readable.
+  quad(center - farHalf, horizon, center - nearHalf, base, center - w * .50, base, center - w * .08, horizon + 3, 'rgba(26,37,49,.92)');
+  quad(center + farHalf, horizon, center + w * .08, horizon + 3, center + w * .50, base, center + nearHalf, base, 'rgba(20,29,42,.95)');
+  ctx.strokeStyle = 'rgba(199,255,77,.38)'; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(center - farHalf, horizon); ctx.lineTo(center - nearHalf, base); ctx.moveTo(center + farHalf, horizon); ctx.lineTo(center + nearHalf, base); ctx.stroke();
+  // Perspective lane lines and contour lines.
+  ctx.strokeStyle = 'rgba(199,255,77,.18)'; ctx.lineWidth = 1;
+  for (let i = -5; i <= 5; i++) {
+    const nearX = center + i * w * .09;
+    ctx.beginPath(); ctx.moveTo(center + i * farHalf * 1.2, horizon); ctx.lineTo(nearX, base); ctx.stroke();
+  }
+  for (let i = 1; i <= 9; i++) {
+    const t = i / 9, y = horizon + Math.pow(t, 1.55) * (base - horizon);
+    const half = farHalf + t * (nearHalf - farHalf);
     ctx.beginPath(); ctx.moveTo(center - half, y); ctx.lineTo(center + half, y); ctx.stroke();
   }
-  ctx.strokeStyle = 'rgba(199,255,77,.16)';
-  for (const side of [-1, 1]) { ctx.beginPath(); ctx.moveTo(center + side * 8, horizon); ctx.lineTo(center + side * w * .46, base); ctx.stroke(); }
   ctx.restore();
 }
 function drawBrick(b) {
@@ -194,31 +212,44 @@ function drawBrick(b) {
   const renderSource = renderCanvas || styledCanvas || sourceCanvas;
   const sw = renderSource.width / 12, sh = renderSource.height / 7;
   const sx = b.col * sw, sy = b.row * sh;
-  const extrusion = b.geometry === 'flat' ? 0 : b.geometry === 'relief' ? Math.max(2, b.depth * .45) : Math.max(5, b.depth);
-  const perspective = b.geometry === 'solid' ? Math.min(.16, extrusion / 160) : b.geometry === 'relief' ? Math.min(.07, extrusion / 260) : 0;
+  const extrusion = b.geometry === 'flat' ? 0 : b.geometry === 'relief'
+    ? Math.max(7, b.depth * .72) : Math.max(14, b.depth * 1.65);
   const p = cameraProject(b.x + b.w / 2, b.y + b.h / 2);
-  const bw = b.w * p.scale, bh = b.h * p.scale, ex = extrusion * .62 * p.scale, ey = extrusion * p.scale;
-  const light = b.geometry === 'solid' ? 'rgba(255,255,255,.24)' : 'rgba(255,255,255,.12)';
-  const shade = b.geometry === 'solid' ? 'rgba(12,15,22,.82)' : 'rgba(30,34,42,.68)';
+  const bw = b.w * p.scale, bh = b.h * p.scale;
+  const ex = extrusion * (.72 + p.depth * .25), ey = extrusion * (.55 + p.depth * .35);
+  const slant = b.geometry === 'solid' ? .18 : b.geometry === 'relief' ? .08 : .025;
+  const face = (points, fill, stroke) => {
+    ctx.beginPath(); points.forEach((q, i) => i ? ctx.lineTo(q[0], q[1]) : ctx.moveTo(q[0], q[1]));
+    ctx.closePath(); ctx.fillStyle = fill; ctx.fill();
+    if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth = Math.max(1, p.scale); ctx.stroke(); }
+  };
   ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(b.tilt);
+  const tl = [-bw / 2, -bh / 2], tr = [bw / 2, -bh / 2], br = [bw / 2, bh / 2], bl = [-bw / 2, bh / 2];
   if (extrusion > 0) {
-    ctx.shadowColor = 'rgba(0,0,0,.58)'; ctx.shadowBlur = 8 * p.scale; ctx.shadowOffsetX = ex; ctx.shadowOffsetY = ey;
-    ctx.fillStyle = shade;
-    ctx.beginPath(); ctx.moveTo(bw / 2, -bh / 2); ctx.lineTo(bw / 2 + ex, -bh / 2 + ey); ctx.lineTo(bw / 2 + ex, bh / 2 + ey); ctx.lineTo(bw / 2, bh / 2); ctx.closePath(); ctx.fill();
-    ctx.fillStyle = 'rgba(9,12,18,.72)';
-    ctx.beginPath(); ctx.moveTo(-bw / 2, -bh / 2); ctx.lineTo(-bw / 2 - ex * .35, -bh / 2 + ey * .7); ctx.lineTo(-bw / 2 - ex * .35, bh / 2 + ey * .7); ctx.lineTo(-bw / 2, bh / 2); ctx.closePath(); ctx.fill();
-    ctx.fillStyle = 'rgba(6,8,12,.9)';
-    ctx.beginPath(); ctx.moveTo(-bw / 2, bh / 2); ctx.lineTo(bw / 2, bh / 2); ctx.lineTo(bw / 2 + ex, bh / 2 + ey); ctx.lineTo(-bw / 2 - ex * .35, bh / 2 + ey * .7); ctx.closePath(); ctx.fill();
-    ctx.strokeStyle = light; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(-bw / 2, -bh / 2); ctx.lineTo(bw / 2, -bh / 2); ctx.stroke(); ctx.shadowColor = 'transparent';
+    const tl2 = [tl[0] - ex * slant, tl[1] + ey], tr2 = [tr[0] + ex, tr[1] + ey];
+    const br2 = [br[0] + ex, br[1] + ey], bl2 = [bl[0] - ex * slant, bl[1] + ey];
+    // Cast shadow and four readable faces.
+    ctx.shadowColor = 'rgba(0,0,0,.78)'; ctx.shadowBlur = 12 * p.scale; ctx.shadowOffsetX = ex * .45; ctx.shadowOffsetY = ey;
+    face([bl, br, br2, bl2], 'rgba(2,5,10,.94)', 'rgba(0,0,0,.5)');
+    ctx.shadowColor = 'transparent';
+    face([tr, br, br2, tr2], 'rgba(12,20,30,.95)', 'rgba(199,255,77,.22)');
+    face([tl, bl, bl2, tl2], 'rgba(28,38,48,.82)', 'rgba(255,255,255,.12)');
+    face([tl, tr, tr2, tl2], 'rgba(111,132,145,.48)', 'rgba(255,255,255,.28)');
   }
-  ctx.save(); ctx.transform(1, 0, perspective, 1, 0, 0);
-  ctx.shadowColor = b.geometry === 'flat' ? 'transparent' : 'rgba(0,0,0,.38)';
-  ctx.shadowBlur = b.geometry === 'flat' ? 0 : 5 * p.scale;
+  ctx.save();
+  ctx.transform(1, 0, slant, 1, 0, 0);
+  ctx.shadowColor = b.geometry === 'flat' ? 'transparent' : 'rgba(0,0,0,.52)';
+  ctx.shadowBlur = b.geometry === 'flat' ? 0 : 8 * p.scale;
   ctx.drawImage(renderSource, sx, sy, sw, sh, -bw / 2, -bh / 2, bw, bh);
   ctx.shadowColor = 'transparent';
-  ctx.fillStyle = b.geometry === 'flat' ? 'rgba(255,255,255,.025)' : light; ctx.fillRect(-bw / 2, -bh / 2, bw, bh);
-  if (b.geometry !== 'flat') { ctx.strokeStyle = light; ctx.lineWidth = b.geometry === 'solid' ? 1.5 : 1; ctx.strokeRect(-bw / 2, -bh / 2, bw, bh); }
-  ctx.restore(); ctx.restore();
+  ctx.fillStyle = b.geometry === 'flat' ? 'rgba(255,255,255,.035)' : 'rgba(255,255,255,.17)';
+  ctx.fillRect(-bw / 2, -bh / 2, bw, bh);
+  if (b.geometry !== 'flat') {
+    ctx.strokeStyle = 'rgba(255,255,255,.42)'; ctx.lineWidth = Math.max(1, 1.5 * p.scale);
+    ctx.strokeRect(-bw / 2, -bh / 2, bw, bh);
+  }
+  ctx.restore();
+  ctx.restore();
 }
 function drawDebris(d) {
   const p = cameraProject(d.x, d.y), s = Math.max(2, d.size * p.scale * Math.abs(Math.cos(d.spin)));
@@ -228,16 +259,16 @@ function drawDebris(d) {
 }
 function drawMountainEnvironment(w, h) {
   const sky = ctx.createLinearGradient(0, 0, 0, h);
-  sky.addColorStop(0, '#111b35'); sky.addColorStop(.48, '#27324a'); sky.addColorStop(1, '#090b12');
+  sky.addColorStop(0, '#09152e'); sky.addColorStop(.38, '#344a62'); sky.addColorStop(1, '#07090f');
   ctx.fillStyle = sky; ctx.fillRect(0, 0, w, h);
-  ctx.fillStyle = 'rgba(122,150,190,.22)';
-  ctx.beginPath(); ctx.moveTo(0, h * .42); ctx.lineTo(w * .18, h * .22); ctx.lineTo(w * .34, h * .39); ctx.lineTo(w * .53, h * .16); ctx.lineTo(w * .7, h * .36); ctx.lineTo(w * .88, h * .2); ctx.lineTo(w, h * .4); ctx.lineTo(w, h); ctx.lineTo(0, h); ctx.closePath(); ctx.fill();
-  ctx.fillStyle = 'rgba(9,12,20,.7)';
-  ctx.beginPath(); ctx.moveTo(0, h * .58); ctx.lineTo(w * .23, h * .42); ctx.lineTo(w * .43, h * .56); ctx.lineTo(w * .66, h * .35); ctx.lineTo(w, h * .55); ctx.lineTo(w, h); ctx.lineTo(0, h); ctx.closePath(); ctx.fill();
-  const horizon = h * .43;
-  ctx.strokeStyle = 'rgba(199,255,77,.12)'; ctx.lineWidth = 1;
-  for (let i = -8; i <= 8; i++) { ctx.beginPath(); ctx.moveTo(w / 2, horizon); ctx.lineTo(w / 2 + i * w * .16, h); ctx.stroke(); }
-  for (let i = 0; i < 6; i++) { const y = horizon + Math.pow((i + 1) / 6, 1.7) * (h - horizon); ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke(); }
+  // Layered ridges reinforce the distant horizon.
+  ctx.fillStyle = 'rgba(164,193,220,.28)';
+  ctx.beginPath(); ctx.moveTo(0, h * .40); ctx.lineTo(w * .15, h * .22); ctx.lineTo(w * .31, h * .38); ctx.lineTo(w * .52, h * .12); ctx.lineTo(w * .72, h * .35); ctx.lineTo(w * .9, h * .18); ctx.lineTo(w, h * .35); ctx.lineTo(w, h); ctx.lineTo(0, h); ctx.closePath(); ctx.fill();
+  ctx.fillStyle = 'rgba(12,19,31,.82)';
+  ctx.beginPath(); ctx.moveTo(0, h * .56); ctx.lineTo(w * .18, h * .40); ctx.lineTo(w * .4, h * .54); ctx.lineTo(w * .62, h * .31); ctx.lineTo(w, h * .52); ctx.lineTo(w, h); ctx.lineTo(0, h); ctx.closePath(); ctx.fill();
+  const horizon = h * .13;
+  ctx.strokeStyle = 'rgba(199,255,77,.14)'; ctx.lineWidth = 1;
+  for (let i = -10; i <= 10; i++) { ctx.beginPath(); ctx.moveTo(w / 2, horizon); ctx.lineTo(w / 2 + i * w * .13, h); ctx.stroke(); }
 }
 function draw() {
   const w = canvas.clientWidth, h = canvas.clientHeight;
@@ -303,7 +334,15 @@ function loop(t) {
   else animationFrameId = 0;
 }
 
-function movePaddle(clientX) { const rect = canvas.getBoundingClientRect(); paddle.x = Math.max(0, Math.min(canvas.clientWidth - paddle.w, clientX - rect.left - paddle.w / 2)); if (!running && image) ball.x = paddle.x + paddle.w / 2; }
+function movePaddle(clientX) {
+  const rect = canvas.getBoundingClientRect();
+  const screenX = clientX - rect.left;
+  const depth = Math.max(0, Math.min(1, paddle.y / (canvas.clientHeight * .92)));
+  const scale = .30 + Math.pow(depth, .72) * .88;
+  const worldX = canvas.clientWidth / 2 + (screenX - canvas.clientWidth / 2) / scale;
+  paddle.x = Math.max(0, Math.min(canvas.clientWidth - paddle.w, worldX - paddle.w / 2));
+  if (!running && image) ball.x = paddle.x + paddle.w / 2;
+}
 canvas.addEventListener('pointermove', e => movePaddle(e.clientX));
 canvas.addEventListener('pointerdown', e => {
   movePaddle(e.clientX);
