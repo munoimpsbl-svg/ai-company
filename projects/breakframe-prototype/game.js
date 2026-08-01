@@ -169,11 +169,21 @@ function buildBricks() {
   }
 }
 
+function cameraScaleAt(y) {
+  const h = canvas.clientHeight;
+  const t = Math.max(0, Math.min(1, y / (h * .92)));
+  return .52 + t * .58;
+}
 function cameraProject(x, y) {
   const w = canvas.clientWidth, h = canvas.clientHeight;
   const t = Math.max(0, Math.min(1, y / (h * .92)));
-  const scale = .52 + t * .58;
+  const scale = cameraScaleAt(y);
   return { x: w / 2 + (x - w / 2) * scale, y: h * .12 + t * h * .76, scale };
+}
+function cameraUnprojectX(screenX, worldY) {
+  const w = canvas.clientWidth;
+  const scale = cameraScaleAt(worldY);
+  return w / 2 + (screenX - w / 2) / scale;
 }
 function drawMountainClimbSurface(w, h) {
   const horizon = h * .12, base = h * .94, center = w / 2;
@@ -303,11 +313,30 @@ function loop(t) {
   else animationFrameId = 0;
 }
 
-function movePaddle(clientX) { const rect = canvas.getBoundingClientRect(); paddle.x = Math.max(0, Math.min(canvas.clientWidth - paddle.w, clientX - rect.left - paddle.w / 2)); if (!running && image) ball.x = paddle.x + paddle.w / 2; }
-canvas.addEventListener('pointermove', e => movePaddle(e.clientX));
+function movePaddle(clientX) {
+  const rect = canvas.getBoundingClientRect();
+  const screenX = clientX - rect.left;
+  // 入力は画面座標なので、パドルのワールドYにおける投影倍率を戻してから物理座標へ入れる。
+  const worldX = cameraUnprojectX(screenX, paddle.y + paddle.h / 2);
+  paddle.x = Math.max(0, Math.min(canvas.clientWidth - paddle.w, worldX - paddle.w / 2));
+  if (!running && image) ball.x = paddle.x + paddle.w / 2;
+}
+canvas.addEventListener('pointermove', e => {
+  if (e.isPrimary !== false) movePaddle(e.clientX);
+});
 canvas.addEventListener('pointerdown', e => {
-  movePaddle(e.clientX);
-  if (image && !gameOver) { running = true; statusEl.textContent = '破壊中'; startLoop(); }
+  if (e.isPrimary !== false) {
+    e.preventDefault();
+    canvas.setPointerCapture?.(e.pointerId);
+    movePaddle(e.clientX);
+    if (image && !gameOver) { running = true; statusEl.textContent = '破壊中'; startLoop(); }
+  }
+});
+canvas.addEventListener('pointerup', e => {
+  if (canvas.hasPointerCapture?.(e.pointerId)) canvas.releasePointerCapture(e.pointerId);
+});
+canvas.addEventListener('pointercancel', e => {
+  if (canvas.hasPointerCapture?.(e.pointerId)) canvas.releasePointerCapture(e.pointerId);
 });
 input.addEventListener('change', e => { const file = e.target.files[0]; if (!file) return; const img = new Image(); img.onload = () => loadImage(img); img.src = URL.createObjectURL(file); });
 demoButton.addEventListener('click', () => { const c = document.createElement('canvas'); c.width = 1200; c.height = 700; const x = c.getContext('2d'); const g = x.createLinearGradient(0, 0, 1200, 700); g.addColorStop(0, '#5227a8'); g.addColorStop(1, '#ff7b54'); x.fillStyle = g; x.fillRect(0, 0, c.width, c.height); x.fillStyle = 'rgba(255,255,255,.8)'; x.font = 'bold 130px system-ui'; x.fillText('BREAK', 130, 320); x.fillStyle = '#c7ff4d'; x.font = 'bold 100px system-ui'; x.fillText('FRAME', 480, 500); const img = new Image(); img.onload = () => loadImage(img); img.src = c.toDataURL(); });
