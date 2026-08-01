@@ -16,6 +16,7 @@ let particles = [];
 let paddle = { x: 0, y: 0, w: 120, h: 12 };
 let ball = { x: 0, y: 0, r: 8, vx: 4, vy: -5 };
 let running = false;
+let gameOver = false;
 let score = 0;
 let lastTime = 0;
 
@@ -53,6 +54,7 @@ function loadImage(img) {
   buildBricks();
   resetBall();
   running = false;
+  gameOver = false;
 }
 
 function colorDistance(a, b) {
@@ -127,7 +129,15 @@ function buildBricks() {
   const height = Math.min(48, (canvas.clientHeight * .42 - gap * (rows - 1)) / rows);
   bricks = [];
   for (let row = 0; row < rows; row++) for (let col = 0; col < cols; col++) {
-    bricks.push({ x: margin + col * (width + gap), y: 26 + row * (height + gap), w: width, h: height, row, col, alive: true, depth: Math.random() * Number(depthRange.value), tilt: (Math.random() - .5) * .06 });
+    const depth = Math.random() * Number(depthRange.value);
+    const form = Math.random();
+    bricks.push({
+      x: margin + col * (width + gap), y: 26 + row * (height + gap), w: width, h: height,
+      row, col, alive: true, depth,
+      // 平面・レリーフ・立体を同じ画像内に混ぜる。
+      geometry: form < .34 ? 'flat' : form < .68 ? 'relief' : 'solid',
+      tilt: (Math.random() - .5) * (form < .34 ? .018 : .055)
+    });
   }
 }
 
@@ -139,11 +149,27 @@ function drawBrick(b) {
   ctx.save();
   ctx.translate(b.x + b.w / 2, b.y + b.h / 2);
   ctx.rotate(b.tilt);
-  ctx.shadowColor = 'rgba(0,0,0,.55)'; ctx.shadowBlur = 7; ctx.shadowOffsetX = b.depth * .45; ctx.shadowOffsetY = b.depth;
+  const extrusion = b.geometry === 'flat' ? 0 : b.geometry === 'relief' ? Math.max(2, b.depth * .45) : Math.max(4, b.depth);
+  // 立体ブロックは画像面の下に側面を先に描く。
+  if (extrusion > 0) {
+    ctx.shadowColor = 'rgba(0,0,0,.55)'; ctx.shadowBlur = 7;
+    ctx.shadowOffsetX = extrusion * .55; ctx.shadowOffsetY = extrusion;
+    ctx.fillStyle = b.geometry === 'solid' ? 'rgba(18,20,27,.92)' : 'rgba(36,39,47,.82)';
+    ctx.fillRect(-b.w / 2 + extrusion * .35, -b.h / 2 + extrusion * .65, b.w, b.h);
+    ctx.shadowColor = 'transparent';
+  }
+  ctx.shadowColor = b.geometry === 'flat' ? 'transparent' : 'rgba(0,0,0,.42)';
+  ctx.shadowBlur = b.geometry === 'flat' ? 0 : 5;
+  ctx.shadowOffsetX = extrusion * .35; ctx.shadowOffsetY = extrusion * .55;
   ctx.drawImage(renderSource, sx, sy, sw, sh, -b.w / 2, -b.h / 2, b.w, b.h);
   ctx.shadowColor = 'transparent';
-  ctx.fillStyle = `rgba(255,255,255,${.04 + b.depth / 400})`;
+  ctx.fillStyle = b.geometry === 'flat' ? 'rgba(255,255,255,.025)' : `rgba(255,255,255,${.05 + extrusion / 240})`;
   ctx.fillRect(-b.w / 2, -b.h / 2, b.w, b.h);
+  if (b.geometry !== 'flat') {
+    ctx.strokeStyle = b.geometry === 'solid' ? 'rgba(255,255,255,.24)' : 'rgba(255,255,255,.12)';
+    ctx.lineWidth = b.geometry === 'solid' ? 1.5 : 1;
+    ctx.strokeRect(-b.w / 2, -b.h / 2, b.w, b.h);
+  }
   ctx.restore();
 }
 
@@ -166,19 +192,34 @@ function update(dt) {
   const w = canvas.clientWidth, h = canvas.clientHeight;
   if (ball.x < ball.r || ball.x > w - ball.r) ball.vx *= -1;
   if (ball.y < ball.r) ball.vy *= -1;
-  if (ball.y > h + ball.r) { running = false; statusEl.textContent = '落下しました — もう一度タップで再開'; resetBall(); return; }
+  if (ball.y > h + ball.r) {
+    running = false;
+    gameOver = true;
+    statusEl.textContent = `ゲームオーバー — SCORE ${score}。リセットで再挑戦`;
+    resetBall();
+    return;
+  }
   if (ball.y + ball.r > paddle.y && ball.y - ball.r < paddle.y + paddle.h && ball.x > paddle.x && ball.x < paddle.x + paddle.w) { ball.vy = -Math.abs(ball.vy); ball.vx += (ball.x - (paddle.x + paddle.w / 2)) * .035; }
   for (const b of bricks) if (b.alive && ball.x > b.x && ball.x < b.x + b.w && ball.y > b.y && ball.y < b.y + b.h) { b.alive = false; ball.vy *= -1; score += 10; explode(b); break; }
-  if (bricks.length && bricks.every(b => !b.alive)) { running = false; statusEl.textContent = `全破壊！ SCORE ${score} — タップで再挑戦`; }
+  if (bricks.length && bricks.every(b => !b.alive)) {
+    running = false;
+    gameOver = true;
+    statusEl.textContent = `全破壊！ SCORE ${score} — リセットで再挑戦`;
+  }
 }
 function loop(t) { const dt = Math.min((t - lastTime) / 16.67, 2); lastTime = t; update(dt); draw(); requestAnimationFrame(loop); }
 
 function movePaddle(clientX) { const rect = canvas.getBoundingClientRect(); paddle.x = Math.max(0, Math.min(canvas.clientWidth - paddle.w, clientX - rect.left - paddle.w / 2)); if (!running && image) ball.x = paddle.x + paddle.w / 2; }
 canvas.addEventListener('pointermove', e => movePaddle(e.clientX));
-canvas.addEventListener('pointerdown', e => { movePaddle(e.clientX); if (image) { if (!bricks.some(b => b.alive)) buildBricks(); running = true; statusEl.textContent = '破壊中'; } });
+canvas.addEventListener('pointerdown', e => {
+  movePaddle(e.clientX);
+  if (image && !gameOver) { running = true; statusEl.textContent = '破壊中'; }
+});
 input.addEventListener('change', e => { const file = e.target.files[0]; if (!file) return; const img = new Image(); img.onload = () => loadImage(img); img.src = URL.createObjectURL(file); });
 demoButton.addEventListener('click', () => { const c = document.createElement('canvas'); c.width = 1200; c.height = 700; const x = c.getContext('2d'); const g = x.createLinearGradient(0, 0, 1200, 700); g.addColorStop(0, '#5227a8'); g.addColorStop(1, '#ff7b54'); x.fillStyle = g; x.fillRect(0, 0, c.width, c.height); x.fillStyle = 'rgba(255,255,255,.8)'; x.font = 'bold 130px system-ui'; x.fillText('BREAK', 130, 320); x.fillStyle = '#c7ff4d'; x.font = 'bold 100px system-ui'; x.fillText('FRAME', 480, 500); const img = new Image(); img.onload = () => loadImage(img); img.src = c.toDataURL(); });
-resetButton.addEventListener('click', () => { if (image) { buildBricks(); resetBall(); score = 0; running = false; statusEl.textContent = '準備完了 — タップまたはクリックで開始'; } });
+resetButton.addEventListener('click', () => {
+  if (image) { buildBricks(); resetBall(); score = 0; running = false; gameOver = false; statusEl.textContent = '準備完了 — タップまたはクリックで開始'; }
+});
 depthRange.addEventListener('input', () => { if (image) buildBricks(); });
 styleSelect.addEventListener('change', () => {
   if (!image) return;
@@ -186,6 +227,7 @@ styleSelect.addEventListener('change', () => {
   buildBricks();
   resetBall();
   running = false;
+  gameOver = false;
   statusEl.textContent = `${styleSelect.options[styleSelect.selectedIndex].text} — タップまたはクリックで開始`;
 });
 window.addEventListener('resize', resize);
