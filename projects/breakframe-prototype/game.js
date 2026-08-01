@@ -22,6 +22,7 @@ let running = false;
 let gameOver = false;
 let score = 0;
 let lastTime = 0;
+let animationFrameId = 0;
 
 function resize() {
   const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -32,7 +33,7 @@ function resize() {
   paddle.y = rect.height - 36;
   paddle.w = Math.max(92, rect.width * .14);
   if (!ball.x) resetBall();
-  if (image) { buildBricks(); prepareRenderCanvas(); }
+  if (image) { buildBricks(); prepareRenderCanvas(); draw(); }
 }
 
 function resetBall() {
@@ -59,6 +60,7 @@ function loadImage(img) {
   resetBall();
   running = false;
   gameOver = false;
+  draw();
 }
 
 function colorDistance(a, b) {
@@ -243,17 +245,34 @@ function drawDebris(d) {
   ctx.restore();
 }
 
+function drawMountainEnvironment(w, h) {
+  const sky = ctx.createLinearGradient(0, 0, 0, h);
+  sky.addColorStop(0, '#111b35'); sky.addColorStop(.48, '#27324a'); sky.addColorStop(1, '#090b12');
+  ctx.fillStyle = sky; ctx.fillRect(0, 0, w, h);
+  ctx.fillStyle = 'rgba(122,150,190,.22)';
+  ctx.beginPath(); ctx.moveTo(0, h * .42); ctx.lineTo(w * .18, h * .22); ctx.lineTo(w * .34, h * .39); ctx.lineTo(w * .53, h * .16); ctx.lineTo(w * .7, h * .36); ctx.lineTo(w * .88, h * .2); ctx.lineTo(w, h * .4); ctx.lineTo(w, h); ctx.lineTo(0, h); ctx.closePath(); ctx.fill();
+  ctx.fillStyle = 'rgba(9,12,20,.7)';
+  ctx.beginPath(); ctx.moveTo(0, h * .58); ctx.lineTo(w * .23, h * .42); ctx.lineTo(w * .43, h * .56); ctx.lineTo(w * .66, h * .35); ctx.lineTo(w, h * .55); ctx.lineTo(w, h); ctx.lineTo(0, h); ctx.closePath(); ctx.fill();
+  const horizon = h * .43;
+  ctx.strokeStyle = 'rgba(199,255,77,.12)'; ctx.lineWidth = 1;
+  for (let i = -8; i <= 8; i++) { ctx.beginPath(); ctx.moveTo(w / 2, horizon); ctx.lineTo(w / 2 + i * w * .16, h); ctx.stroke(); }
+  for (let i = 0; i < 6; i++) { const y = horizon + Math.pow((i + 1) / 6, 1.7) * (h - horizon); ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke(); }
+}
 function draw() {
   const w = canvas.clientWidth, h = canvas.clientHeight;
   ctx.clearRect(0, 0, w, h);
-  ctx.fillStyle = '#0c0c10'; ctx.fillRect(0, 0, w, h);
+  drawMountainEnvironment(w, h);
+  ctx.save();
+  // ゲーム面を斜面として傾け、右奥へ登っていくカメラ感を出す。
+  ctx.transform(1, -0.085, 0, 1, 0, h * .065);
   bricks.forEach(drawBrick);
   debris = debris.filter(d => d.life > 0);
   debris.forEach(d => { d.x += d.vx; d.y += d.vy; d.vy += .08; d.angle += d.spin; d.spin *= .995; d.life -= .035; drawDebris(d); });
   ctx.fillStyle = '#c7ff4d'; ctx.fillRect(paddle.x, paddle.y, paddle.w, paddle.h);
   ctx.beginPath(); ctx.arc(ball.x, ball.y, ball.r, 0, Math.PI * 2); ctx.fillStyle = '#fff'; ctx.fill();
   particles = particles.filter(p => p.life > 0);
-  particles.forEach(p => { p.x += p.vx; p.y += p.vy; p.life -= .035; ctx.fillStyle = `rgba(199,255,77,${p.life})`; ctx.fillRect(p.x, p.y, 3, 3); });
+  particles.forEach(p => { p.x += p.vx; p.y += p.vy; p.life -= .035; ctx.fillStyle = 'rgba(199,255,77,' + p.life + ')'; ctx.fillRect(p.x, p.y, 3, 3); });
+  ctx.restore();
   ctx.fillStyle = 'rgba(255,255,255,.75)'; ctx.font = '12px system-ui'; ctx.fillText(`SCORE ${score}`, 22, h - 14);
 }
 
@@ -285,18 +304,26 @@ function update(dt) {
     statusEl.textContent = `全破壊！ SCORE ${score} — リセットで再挑戦`;
   }
 }
-function loop(t) { const dt = Math.min((t - lastTime) / 16.67, 2); lastTime = t; update(dt); draw(); requestAnimationFrame(loop); }
+function startLoop() {
+  if (!animationFrameId) { lastTime = performance.now(); animationFrameId = requestAnimationFrame(loop); }
+}
+function loop(t) {
+  const dt = Math.min((t - lastTime) / 16.67, 2); lastTime = t;
+  update(dt); draw();
+  if (running || debris.length || particles.length) animationFrameId = requestAnimationFrame(loop);
+  else animationFrameId = 0;
+}
 
 function movePaddle(clientX) { const rect = canvas.getBoundingClientRect(); paddle.x = Math.max(0, Math.min(canvas.clientWidth - paddle.w, clientX - rect.left - paddle.w / 2)); if (!running && image) ball.x = paddle.x + paddle.w / 2; }
 canvas.addEventListener('pointermove', e => movePaddle(e.clientX));
 canvas.addEventListener('pointerdown', e => {
   movePaddle(e.clientX);
-  if (image && !gameOver) { running = true; statusEl.textContent = '破壊中'; }
+  if (image && !gameOver) { running = true; statusEl.textContent = '破壊中'; startLoop(); }
 });
 input.addEventListener('change', e => { const file = e.target.files[0]; if (!file) return; const img = new Image(); img.onload = () => loadImage(img); img.src = URL.createObjectURL(file); });
 demoButton.addEventListener('click', () => { const c = document.createElement('canvas'); c.width = 1200; c.height = 700; const x = c.getContext('2d'); const g = x.createLinearGradient(0, 0, 1200, 700); g.addColorStop(0, '#5227a8'); g.addColorStop(1, '#ff7b54'); x.fillStyle = g; x.fillRect(0, 0, c.width, c.height); x.fillStyle = 'rgba(255,255,255,.8)'; x.font = 'bold 130px system-ui'; x.fillText('BREAK', 130, 320); x.fillStyle = '#c7ff4d'; x.font = 'bold 100px system-ui'; x.fillText('FRAME', 480, 500); const img = new Image(); img.onload = () => loadImage(img); img.src = c.toDataURL(); });
 resetButton.addEventListener('click', () => {
-  if (image) { buildBricks(); resetBall(); score = 0; running = false; gameOver = false; statusEl.textContent = '準備完了 — タップまたはクリックで開始'; }
+  if (image) { buildBricks(); resetBall(); score = 0; running = false; gameOver = false; debris = []; particles = []; statusEl.textContent = '準備完了 — タップまたはクリックで開始'; draw(); }
 });
 depthRange.addEventListener('input', () => { if (image) { buildBricks(); prepareRenderCanvas(); } });
 fitSelect.addEventListener('change', () => { if (image) { buildBricks(); prepareRenderCanvas(); resetBall(); running = false; statusEl.textContent = `${fitSelect.options[fitSelect.selectedIndex].text} — タップまたはクリックで開始`; } });
@@ -311,4 +338,4 @@ styleSelect.addEventListener('change', () => {
   statusEl.textContent = `${styleSelect.options[styleSelect.selectedIndex].text} — タップまたはクリックで開始`;
 });
 window.addEventListener('resize', resize);
-resize(); requestAnimationFrame(loop);
+resize(); draw();
