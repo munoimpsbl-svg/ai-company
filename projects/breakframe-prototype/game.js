@@ -169,82 +169,63 @@ function buildBricks() {
   }
 }
 
+function cameraProject(x, y) {
+  const w = canvas.clientWidth, h = canvas.clientHeight;
+  const t = Math.max(0, Math.min(1, y / (h * .92)));
+  const scale = .52 + t * .58;
+  return { x: w / 2 + (x - w / 2) * scale, y: h * .12 + t * h * .76, scale };
+}
+function drawMountainClimbSurface(w, h) {
+  const horizon = h * .12, base = h * .94, center = w / 2;
+  ctx.save();
+  ctx.fillStyle = 'rgba(8,12,20,.42)';
+  ctx.beginPath(); ctx.moveTo(center - 8, horizon); ctx.lineTo(w * .04, base); ctx.lineTo(w * .96, base); ctx.lineTo(center + 8, horizon); ctx.closePath(); ctx.fill();
+  ctx.strokeStyle = 'rgba(199,255,77,.22)'; ctx.lineWidth = 1.5;
+  for (let i = 0; i <= 8; i++) {
+    const t = i / 8, y = horizon + Math.pow(t, 1.7) * (base - horizon), half = 12 + t * w * .44;
+    ctx.beginPath(); ctx.moveTo(center - half, y); ctx.lineTo(center + half, y); ctx.stroke();
+  }
+  ctx.strokeStyle = 'rgba(199,255,77,.16)';
+  for (const side of [-1, 1]) { ctx.beginPath(); ctx.moveTo(center + side * 8, horizon); ctx.lineTo(center + side * w * .46, base); ctx.stroke(); }
+  ctx.restore();
+}
 function drawBrick(b) {
   if (!b.alive) return;
   const renderSource = renderCanvas || styledCanvas || sourceCanvas;
   const sw = renderSource.width / 12, sh = renderSource.height / 7;
   const sx = b.col * sw, sy = b.row * sh;
   const extrusion = b.geometry === 'flat' ? 0 : b.geometry === 'relief' ? Math.max(2, b.depth * .45) : Math.max(5, b.depth);
-  const perspective = b.geometry === 'solid' ? Math.min(0.16, extrusion / 160) : b.geometry === 'relief' ? Math.min(0.07, extrusion / 260) : 0;
-  const ex = extrusion * .62, ey = extrusion;
+  const perspective = b.geometry === 'solid' ? Math.min(.16, extrusion / 160) : b.geometry === 'relief' ? Math.min(.07, extrusion / 260) : 0;
+  const p = cameraProject(b.x + b.w / 2, b.y + b.h / 2);
+  const bw = b.w * p.scale, bh = b.h * p.scale, ex = extrusion * .62 * p.scale, ey = extrusion * p.scale;
   const light = b.geometry === 'solid' ? 'rgba(255,255,255,.24)' : 'rgba(255,255,255,.12)';
   const shade = b.geometry === 'solid' ? 'rgba(12,15,22,.82)' : 'rgba(30,34,42,.68)';
-  ctx.save();
-  ctx.translate(b.x + b.w / 2, b.y + b.h / 2);
-  ctx.rotate(b.tilt);
+  ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(b.tilt);
   if (extrusion > 0) {
-    ctx.shadowColor = 'rgba(0,0,0,.58)';
-    ctx.shadowBlur = 8;
-    ctx.shadowOffsetX = ex;
-    ctx.shadowOffsetY = ey;
-    // 右側面、左側面、下面を別々に描き、光源（左上）に応じて濃淡を変える。
+    ctx.shadowColor = 'rgba(0,0,0,.58)'; ctx.shadowBlur = 8 * p.scale; ctx.shadowOffsetX = ex; ctx.shadowOffsetY = ey;
     ctx.fillStyle = shade;
-    ctx.beginPath();
-    ctx.moveTo(b.w / 2, -b.h / 2);
-    ctx.lineTo(b.w / 2 + ex, -b.h / 2 + ey);
-    ctx.lineTo(b.w / 2 + ex, b.h / 2 + ey);
-    ctx.lineTo(b.w / 2, b.h / 2);
-    ctx.closePath(); ctx.fill();
+    ctx.beginPath(); ctx.moveTo(bw / 2, -bh / 2); ctx.lineTo(bw / 2 + ex, -bh / 2 + ey); ctx.lineTo(bw / 2 + ex, bh / 2 + ey); ctx.lineTo(bw / 2, bh / 2); ctx.closePath(); ctx.fill();
     ctx.fillStyle = 'rgba(9,12,18,.72)';
-    ctx.beginPath();
-    ctx.moveTo(-b.w / 2, -b.h / 2);
-    ctx.lineTo(-b.w / 2 - ex * .35, -b.h / 2 + ey * .7);
-    ctx.lineTo(-b.w / 2 - ex * .35, b.h / 2 + ey * .7);
-    ctx.lineTo(-b.w / 2, b.h / 2);
-    ctx.closePath(); ctx.fill();
+    ctx.beginPath(); ctx.moveTo(-bw / 2, -bh / 2); ctx.lineTo(-bw / 2 - ex * .35, -bh / 2 + ey * .7); ctx.lineTo(-bw / 2 - ex * .35, bh / 2 + ey * .7); ctx.lineTo(-bw / 2, bh / 2); ctx.closePath(); ctx.fill();
     ctx.fillStyle = 'rgba(6,8,12,.9)';
-    ctx.beginPath();
-    ctx.moveTo(-b.w / 2, b.h / 2);
-    ctx.lineTo(b.w / 2, b.h / 2);
-    ctx.lineTo(b.w / 2 + ex, b.h / 2 + ey);
-    ctx.lineTo(-b.w / 2 - ex * .35, b.h / 2 + ey * .7);
-    ctx.closePath(); ctx.fill();
-    ctx.strokeStyle = light; ctx.lineWidth = 1;
-    ctx.beginPath(); ctx.moveTo(-b.w / 2, -b.h / 2); ctx.lineTo(b.w / 2, -b.h / 2); ctx.stroke();
-    ctx.shadowColor = 'transparent';
+    ctx.beginPath(); ctx.moveTo(-bw / 2, bh / 2); ctx.lineTo(bw / 2, bh / 2); ctx.lineTo(bw / 2 + ex, bh / 2 + ey); ctx.lineTo(-bw / 2 - ex * .35, bh / 2 + ey * .7); ctx.closePath(); ctx.fill();
+    ctx.strokeStyle = light; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(-bw / 2, -bh / 2); ctx.lineTo(bw / 2, -bh / 2); ctx.stroke(); ctx.shadowColor = 'transparent';
   }
-  ctx.save();
-  // 軽いアフィン変形で上辺を短く見せ、立体ブロックの透視感を作る。
-  ctx.transform(1, 0, perspective, 1, 0, 0);
+  ctx.save(); ctx.transform(1, 0, perspective, 1, 0, 0);
   ctx.shadowColor = b.geometry === 'flat' ? 'transparent' : 'rgba(0,0,0,.38)';
-  ctx.shadowBlur = b.geometry === 'flat' ? 0 : 5;
-  ctx.drawImage(renderSource, sx, sy, sw, sh, -b.w / 2, -b.h / 2, b.w, b.h);
+  ctx.shadowBlur = b.geometry === 'flat' ? 0 : 5 * p.scale;
+  ctx.drawImage(renderSource, sx, sy, sw, sh, -bw / 2, -bh / 2, bw, bh);
   ctx.shadowColor = 'transparent';
-  ctx.fillStyle = b.geometry === 'flat' ? 'rgba(255,255,255,.025)' : light;
-  ctx.fillRect(-b.w / 2, -b.h / 2, b.w, b.h);
-  if (b.geometry !== 'flat') {
-    ctx.strokeStyle = light;
-    ctx.lineWidth = b.geometry === 'solid' ? 1.5 : 1;
-    ctx.strokeRect(-b.w / 2, -b.h / 2, b.w, b.h);
-  }
-  ctx.restore();
-  ctx.restore();
+  ctx.fillStyle = b.geometry === 'flat' ? 'rgba(255,255,255,.025)' : light; ctx.fillRect(-bw / 2, -bh / 2, bw, bh);
+  if (b.geometry !== 'flat') { ctx.strokeStyle = light; ctx.lineWidth = b.geometry === 'solid' ? 1.5 : 1; ctx.strokeRect(-bw / 2, -bh / 2, bw, bh); }
+  ctx.restore(); ctx.restore();
 }
 function drawDebris(d) {
-  const s = Math.max(2, d.size * Math.abs(Math.cos(d.spin)));
-  ctx.save();
-  ctx.translate(d.x, d.y);
-  ctx.rotate(d.angle);
-  ctx.fillStyle = d.color;
-  ctx.beginPath();
-  ctx.moveTo(-s, -d.size / 2); ctx.lineTo(s, -d.size / 2);
-  ctx.lineTo(s + d.depth, d.size / 2 + d.depth); ctx.lineTo(-s + d.depth, d.size / 2 + d.depth);
-  ctx.closePath(); ctx.fill();
-  ctx.fillStyle = 'rgba(255,255,255,.25)';
-  ctx.fillRect(-s, -d.size / 2, s * 2, Math.max(1, d.size * .12));
-  ctx.restore();
+  const p = cameraProject(d.x, d.y), s = Math.max(2, d.size * p.scale * Math.abs(Math.cos(d.spin)));
+  ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(d.angle); ctx.fillStyle = d.color;
+  ctx.beginPath(); ctx.moveTo(-s, -d.size * p.scale / 2); ctx.lineTo(s, -d.size * p.scale / 2); ctx.lineTo(s + d.depth * p.scale, d.size * p.scale / 2 + d.depth * p.scale); ctx.lineTo(-s + d.depth * p.scale, d.size * p.scale / 2 + d.depth * p.scale); ctx.closePath(); ctx.fill();
+  ctx.fillStyle = 'rgba(255,255,255,.25)'; ctx.fillRect(-s, -d.size * p.scale / 2, s * 2, Math.max(1, d.size * p.scale * .12)); ctx.restore();
 }
-
 function drawMountainEnvironment(w, h) {
   const sky = ctx.createLinearGradient(0, 0, 0, h);
   sky.addColorStop(0, '#111b35'); sky.addColorStop(.48, '#27324a'); sky.addColorStop(1, '#090b12');
@@ -262,17 +243,17 @@ function draw() {
   const w = canvas.clientWidth, h = canvas.clientHeight;
   ctx.clearRect(0, 0, w, h);
   drawMountainEnvironment(w, h);
-  ctx.save();
-  // ゲーム面を斜面として傾け、右奥へ登っていくカメラ感を出す。
-  ctx.transform(1, -0.085, 0, 1, 0, h * .065);
+  drawMountainClimbSurface(w, h);
   bricks.forEach(drawBrick);
   debris = debris.filter(d => d.life > 0);
   debris.forEach(d => { d.x += d.vx; d.y += d.vy; d.vy += .08; d.angle += d.spin; d.spin *= .995; d.life -= .035; drawDebris(d); });
-  ctx.fillStyle = '#c7ff4d'; ctx.fillRect(paddle.x, paddle.y, paddle.w, paddle.h);
-  ctx.beginPath(); ctx.arc(ball.x, ball.y, ball.r, 0, Math.PI * 2); ctx.fillStyle = '#fff'; ctx.fill();
+  const paddleProjection = cameraProject(paddle.x + paddle.w / 2, paddle.y + paddle.h / 2);
+  ctx.save(); ctx.translate(paddleProjection.x, paddleProjection.y); ctx.scale(paddleProjection.scale, paddleProjection.scale);
+  ctx.fillStyle = '#c7ff4d'; ctx.fillRect(-paddle.w / 2, -paddle.h / 2, paddle.w, paddle.h); ctx.restore();
+  const ballProjection = cameraProject(ball.x, ball.y);
+  ctx.beginPath(); ctx.arc(ballProjection.x, ballProjection.y, ball.r * ballProjection.scale, 0, Math.PI * 2); ctx.fillStyle = '#fff'; ctx.fill();
   particles = particles.filter(p => p.life > 0);
-  particles.forEach(p => { p.x += p.vx; p.y += p.vy; p.life -= .035; ctx.fillStyle = 'rgba(199,255,77,' + p.life + ')'; ctx.fillRect(p.x, p.y, 3, 3); });
-  ctx.restore();
+  particles.forEach(p => { p.x += p.vx; p.y += p.vy; p.life -= .035; const pp = cameraProject(p.x, p.y); ctx.fillStyle = 'rgba(199,255,77,' + p.life + ')'; ctx.fillRect(pp.x, pp.y, 3 * pp.scale, 3 * pp.scale); });
   ctx.fillStyle = 'rgba(255,255,255,.75)'; ctx.font = '12px system-ui'; ctx.fillText(`SCORE ${score}`, 22, h - 14);
 }
 
@@ -292,8 +273,16 @@ function update(dt) {
   if (ball.y > h + ball.r) {
     running = false;
     gameOver = true;
-    statusEl.textContent = `ゲームオーバー — SCORE ${score}。リセットで再挑戦`;
+    statusEl.textContent = `ゲームオーバー — SCORE ${score}。再開するか選択してください`;
     resetBall();
+    window.setTimeout(() => {
+      if (!image || !gameOver) return;
+      const retry = window.confirm('ゲームオーバーです。最初から再開しますか？');
+      if (retry) {
+        buildBricks(); resetBall(); score = 0; debris = []; particles = [];
+        gameOver = false; running = true; statusEl.textContent = '再開しました — 破壊中'; startLoop();
+      } else statusEl.textContent = `ゲームオーバー — SCORE ${score}。リセットで再挑戦`;
+    }, 80);
     return;
   }
   if (ball.y + ball.r > paddle.y && ball.y - ball.r < paddle.y + paddle.h && ball.x > paddle.x && ball.x < paddle.x + paddle.w) { ball.vy = -Math.abs(ball.vy); ball.vx += (ball.x - (paddle.x + paddle.w / 2)) * .035; }
