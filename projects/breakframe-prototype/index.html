@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BREAKFRAME — Image Breaker Prototype</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">BREAKFRAME / PROTOTYPE 01</p>
+        <h1>画像を、壊す。</h1>
+      </div>
+      <div class="status" id="status">画像を読み込んでください</div>
+    </header>
+
+    <section class="control-panel">
+      <label class="upload-button">
+        <input id="imageInput" type="file" accept="image/*" />
+        画像を選ぶ
+      </label>
+      <button id="demoButton" class="secondary">デモ画像を使う</button>
+      <label class="select-control">処理スタイル
+        <select id="styleSelect">
+          <option value="real">リアル</option>
+          <option value="famicom">ファミコン</option>
+          <option value="polygon">ポリゴン</option>
+        </select>
+      </label>
+      <label class="range-control">凹凸 <input id="depthRange" type="range" min="0" max="20" value="8" /></label>
+      <button id="resetButton" class="secondary">リセット</button>
+    </section>
+
+    <section class="game-wrap">
+      <canvas id="gameCanvas" aria-label="画像を使ったブロック崩し"></canvas>
+      <div class="empty-state" id="emptyState">
+        <span class="empty-icon">✦</span>
+        <strong>写真やスクリーンショットを読み込む</strong>
+        <small>画像はこのブラウザ内だけで処理されます</small>
+      </div>
+    </section>
+
+    <footer class="hint">マウス・指でパドルを動かす　／　クリック・タップで開始　／　画像は自動でタイル化されます。処理スタイルは後から変更できます</footer>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
