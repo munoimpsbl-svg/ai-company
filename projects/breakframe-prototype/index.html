@@ -29,6 +29,12 @@
           <option value="polygon">ポリゴン</option>
         </select>
       </label>
+      <label class="select-control">画像配置
+        <select id="fitSelect" aria-label="アップロード画像の配置方法">
+          <option value="contain">レターボックス（全体表示）</option>
+          <option value="cover">安全なクロップ（画面いっぱい）</option>
+        </select>
+      </label>
       <label class="range-control">凹凸 <input id="depthRange" type="range" min="0" max="20" value="8" /></label>
       <button id="resetButton" class="secondary">リセット</button>
     </section>
@@ -42,7 +48,7 @@
       </div>
     </section>
 
-  <footer class="hint">マウス・指でパドルを動かす　／　クリック・タップで開始　／　平面・レリーフ・立体ブロックが混在します。落下後はリセットで再挑戦できます</footer>
+    <footer class="hint">マウス・指でパドルを動かす　／　クリック・タップで開始　／　平面・レリーフ・立体ブロックが混在します。落下後はリセットで再挑戦できます</footer>
   </main>
   <script src="game.js"></script>
 </body>
