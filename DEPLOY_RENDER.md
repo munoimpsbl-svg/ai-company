@@ -22,6 +22,8 @@ RenderのEnvironment Variablesへ設定する。
 | `P003_WORDPRESS_URL` | YES | 解析対象WordPress URL |
 | `P003_WORDPRESS_ADMIN_URL` | NO | WordPress管理画面URL |
 | `P004_WORDPRESS_URL` | NO | アダルト事業部用WordPress URL。未設定時はP003を利用 |
+| `P004_WORDPRESS_USERNAME` | NO | P004の下書き作成・承認済み既存ページ更新に使うWordPressユーザー名 |
+| `P004_WORDPRESS_APP_PASSWORD` | NO | P004のWordPressアプリケーションパスワード |
 | `AI_COMPANY_DRIVE_ROOT_ID` | NO | 既存DriveルートフォルダID |
 | `GOOGLE_DRIVE_OAUTH_TOKEN_JSON` | YES | `.secrets/google_token.json`のJSON全体 |
 | `GOOGLE_SEARCH_CONSOLE_TOKEN_JSON` | NO | `.secrets/search_console_token.json`のJSON全体 |
@@ -57,4 +59,6 @@ Search Console / GA4のtokenが無い場合、該当KPIは`未取得`または`0
 - Google Driveを正データとする。
 - Renderのローカルファイルは一時領域として扱う。
 - Dashboard外部公開時は`DASHBOARD_PASSWORD`を必ず設定する。
-- WordPress投稿、削除、SNS自動投稿は行わない。
+- DashboardからWordPress投稿・更新・削除、SNS自動投稿は行わない。
+- WordPress書き込み処理はP004専用認証を優先し、旧`WORDPRESS_USERNAME`系は互換用とする。
+- 既存ページ更新は、対象IDと差分が承認済みの場合に限り、更新前後の本文照合を通して実行する。

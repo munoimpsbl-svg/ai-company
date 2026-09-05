@@ -16,6 +16,10 @@ services:
         sync: false
       - key: P004_WORDPRESS_URL
         sync: false
+      - key: P004_WORDPRESS_USERNAME
+        sync: false
+      - key: P004_WORDPRESS_APP_PASSWORD
+        sync: false
       - key: AI_COMPANY_DRIVE_ROOT_ID
         sync: false
       - key: GOOGLE_DRIVE_OAUTH_TOKEN_JSON
