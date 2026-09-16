@@ -1,0 +1,49 @@
+name: P004 official profile images
+on:
+  workflow_dispatch:
+permissions: {}
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Add verified profile images
+        env:
+          WP_USER: ${{ secrets.P004_WORDPRESS_USERNAME }}
+          WP_PASSWORD: ${{ secrets.P004_WORDPRESS_APP_PASSWORD }}
+        shell: python
+        run: |
+          import base64,json,os,re,urllib.request,urllib.error,html
+          class NoRedirect(urllib.request.HTTPRedirectHandler):
+              def redirect_request(self,*args,**kwargs): return None
+          opener=urllib.request.build_opener(NoRedirect())
+          auth=base64.b64encode((os.environ["WP_USER"].strip()+":"+os.environ["WP_PASSWORD"].strip()).encode()).decode()
+          def api(path,data=None):
+              req=urllib.request.Request("https://www.munoimp.com/wp-json/wp/v2/"+path,data=None if data is None else json.dumps(data).encode(),headers={"Authorization":"Basic "+auth,"Content-Type":"application/json"})
+              try:
+                  with opener.open(req,timeout=40) as r:return json.load(r)
+              except urllib.error.HTTPError as e:raise SystemExit("WordPress HTTP "+str(e.code)) from None
+          items=[(4526,"鷲尾めい","SNOS-254","wasio_mei.jpg"),(4278,"美園和花","MNGS-76","misono_waka.jpg"),(2851,"河北彩花（河北彩伽）","SNOS-56","kawakita_saika.jpg")]
+          marker="ZZ_OFFICIAL_PORTRAIT_20260916"
+          plans=[]
+          for pid,name,code,filename in items:
+              path="posts/"+str(pid)
+              p=api(path+"?context=edit");raw=p["content"]["raw"]
+              assert p["status"]=="publish"
+              if marker in raw:continue
+              src="https://awsimgsrc.dmm.co.jp/pics_dig/mono/actjpgs/"+filename
+              block='<figure class="zz-official-portrait"><img src="'+src+'" width="125" height="125" alt="'+html.escape(name)+' 公式プロフィール写真" loading="lazy" decoding="async"><figcaption><span>出演者</span><strong>'+html.escape(name)+'</strong><span>掲載作品：'+code+'</span><small>公式商品ページ掲載のプロフィール写真。作品内の場面写真ではありません。</small></figcaption></figure>'
+              edited,n=re.subn(r'(<h2\b[^>]*id="zz-facts"[^>]*>作品情報</h2>)',lambda m:m[1]+block,raw,count=1)
+              assert n==1,"Unexpected facts heading"
+              css='.zz-official-portrait{display:flex!important;gap:22px!important;align-items:center!important;margin:24px 0!important;padding:20px!important;background:#1c151c;border:1px solid #493641;border-radius:8px}.zz-official-portrait>img{flex:0 0 125px!important;width:125px!important;height:125px!important;max-width:125px!important;object-fit:contain!important;margin:0!important;border-radius:5px}.zz-official-portrait figcaption{display:flex;flex-direction:column;gap:6px;min-width:0;font-size:14px;line-height:1.6;color:#d9cad2}.zz-official-portrait strong{font-size:21px;color:#fff}.zz-official-portrait small{font-size:12px;line-height:1.7;color:#c3b3bc}@media(max-width:480px){.zz-official-portrait{gap:14px!important;padding:14px!important;align-items:flex-start!important}.zz-official-portrait>img{width:96px!important;height:96px!important;flex-basis:96px!important}.zz-official-portrait strong{font-size:18px}.zz-official-portrait figcaption{font-size:13px}}'
+              edited+='\n<!-- '+marker+' --><style>'+css+'</style>\n'
+              rev=api(path+"/revisions?context=edit&per_page=5")
+              assert any(r.get("content",{}).get("raw")==raw for r in rev),"Revision backup missing"
+              plans.append((path,raw,edited))
+          for path,raw,edited in plans:
+              assert api(path+"?context=edit")["content"]["raw"]==raw,"Concurrent edit"
+              api(path,{"content":edited})
+              assert api(path+"?context=edit")["content"]["raw"]==edited,"Save mismatch"
+              print("PASS: official profile photo added to "+path,flush=True)
+          with open(os.environ["GITHUB_STEP_SUMMARY"],"a") as f:f.write("## Official profile photos: PASS\n\nAdded one visually checked, non-explicit performer profile photo to each of three articles. Original content confirmed in revisions; saved content read back.\n")
+          
