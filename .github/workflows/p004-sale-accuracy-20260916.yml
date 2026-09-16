@@ -1,0 +1,59 @@
+name: P004 static sale accuracy fix
+on:
+  workflow_dispatch:
+permissions: {}
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - name: Correct stale sale labels on page 651
+        env:
+          WP_USER: ${{ secrets.P004_WORDPRESS_USERNAME }}
+          WP_PASSWORD: ${{ secrets.P004_WORDPRESS_APP_PASSWORD }}
+        shell: python
+        run: |
+          import base64, json, os, re, urllib.request, urllib.error
+          class NoRedirect(urllib.request.HTTPRedirectHandler):
+              def redirect_request(self, req, fp, code, msg, headers, newurl):
+                  return None
+          opener = urllib.request.build_opener(NoRedirect())
+          auth = base64.b64encode((os.environ["WP_USER"].strip()+":"+os.environ["WP_PASSWORD"].strip()).encode()).decode()
+          base = "https://www.munoimp.com/wp-json/wp/v2/"
+          def api(path, data=None):
+              body = None if data is None else json.dumps(data).encode()
+              req = urllib.request.Request(base+path, data=body, headers={"Authorization":"Basic "+auth,"Content-Type":"application/json","Accept":"application/json"})
+              try:
+                  with opener.open(req,timeout=40) as r:
+                      return json.load(r)
+              except urllib.error.HTTPError as e:
+                  raise SystemExit("WordPress HTTP "+str(e.code)) from None
+          page = api("pages/651?context=edit")
+          assert page["slug"] == "adult" and page["status"] == "publish", "Unexpected target"
+          raw = page["content"]["raw"]
+          pattern = r'<span class="adult-card__sale adult-card__sale--active">[^<]*</span>'
+          count = len(re.findall(pattern,raw))
+          if count == 0 and "STATIC_SALE_ACCURACY_20260916" in raw:
+              print("Already applied; no change.")
+              raise SystemExit(0)
+          assert count == 68, "Unexpected sale badge count; stopped before writing"
+          assert raw.count("<span>セール</span>") == 19, "Unexpected tag count"
+          updated = re.sub(pattern,'<span class="adult-card__sale adult-card__sale--normal">価格は公式で確認</span>',raw)
+          updated = updated.replace("<span>セール</span>","")
+          old = "割引率と公式評価から選んだ、現在セール中の作品です。"
+          assert raw.count(old) == 1, "Unexpected section text"
+          updated = updated.replace(old,"価格・割引の適用状況は変動します。購入前に公式サイトで最新情報をご確認ください。")
+          updated += "\n<!-- STATIC_SALE_ACCURACY_20260916 -->\n"
+          revisions = api("pages/651/revisions?context=edit&per_page=5")
+          assert any(r.get("content",{}).get("raw") == raw for r in revisions), "Current revision backup not confirmed"
+          fresh = api("pages/651?context=edit")
+          assert fresh["content"]["raw"] == raw, "Concurrent edit detected"
+          saved = api("pages/651",{"content":updated})
+          verify = api("pages/651?context=edit")
+          assert verify["content"]["raw"] == updated, "Saved content mismatch"
+          assert verify["status"] == "publish", "Unexpected status after save"
+          print("PASS: 68 stale sale badges and 19 stale tags corrected on page 651.")
+          print("Previous raw content is available in WordPress revisions.")
+          with open(os.environ["GITHUB_STEP_SUMMARY"],"a",encoding="utf-8") as f:
+              f.write("## P004 accuracy fix: PASS\n\n- Page 651: 68 stale sale badges and 19 tags corrected.\n- Price disclaimer updated.\n- Previous content confirmed in WordPress revisions.\n- Saved content read back and matched.\n")
+          
