@@ -1,0 +1,55 @@
+name: P004 WordPress connection check
+on:
+  workflow_dispatch:
+permissions: {}
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Check authentication and editor access (read only)
+        env:
+          WP_USER: ${{ secrets.P004_WORDPRESS_USERNAME }}
+          WP_PASSWORD: ${{ secrets.P004_WORDPRESS_APP_PASSWORD }}
+        shell: python
+        run: |
+          import base64, json, os, urllib.request, urllib.error
+          user = os.environ.get("WP_USER", "").strip()
+          password = os.environ.get("WP_PASSWORD", "").strip()
+          if not user or not password:
+              raise SystemExit("Missing WordPress connection secret.")
+          class NoRedirect(urllib.request.HTTPRedirectHandler):
+              def redirect_request(self, req, fp, code, msg, headers, newurl):
+                  return None
+          opener = urllib.request.build_opener(NoRedirect())
+          auth = base64.b64encode((user + ":" + password).encode()).decode()
+          def read(path):
+              request = urllib.request.Request(
+                  "https://www.munoimp.com/wp-json/wp/v2/" + path,
+                  headers={"Authorization": "Basic " + auth, "Accept": "application/json"})
+              try:
+                  with opener.open(request, timeout=30) as response:
+                      return json.load(response)
+              except urllib.error.HTTPError as error:
+                  raise SystemExit("WordPress returned HTTP " + str(error.code)) from None
+              except Exception:
+                  raise SystemExit("WordPress connection or response failed.") from None
+          me = read("users/me?context=edit")
+          if not isinstance(me, dict) or not me.get("id"):
+              raise SystemExit("Authenticated user was not confirmed.")
+          caps = me.get("capabilities", {})
+          if not caps.get("edit_pages") or not caps.get("edit_posts"):
+              raise SystemExit("Authenticated, but page/post editing permissions are missing.")
+          page = read("pages/651?context=edit&_fields=id,status,slug")
+          post = read("posts/14100?context=edit&_fields=id,status,slug")
+          if page.get("id") != 651 or page.get("slug") != "adult":
+              raise SystemExit("Expected hub page was not confirmed.")
+          if post.get("id") != 14100 or post.get("slug") != "mida-572-review":
+              raise SystemExit("Expected review post was not confirmed.")
+          print("PASS: WordPress authentication, editor permissions, page 651 and post 14100.")
+          print("Read-only check completed. No content was modified.")
+          with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as summary:
+              summary.write("## P004 WordPress connection: PASS\n\n")
+              summary.write("- Authentication and page/post editing permissions confirmed.\n")
+              summary.write("- Hub page 651 and review post 14100 readable in edit context.\n")
+              summary.write("- Read-only requests; no WordPress content modified.\n")
