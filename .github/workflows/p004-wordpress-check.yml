@@ -24,6 +24,7 @@ jobs:
           opener = urllib.request.build_opener(NoRedirect())
           auth = base64.b64encode((user + ":" + password).encode()).decode()
           def read(path):
+              print("Checking " + path.split("?")[0], flush=True)
               request = urllib.request.Request(
                   "https://www.munoimp.com/wp-json/wp/v2/" + path,
                   headers={"Authorization": "Basic " + auth, "Accept": "application/json"})
@@ -31,6 +32,12 @@ jobs:
                   with opener.open(request, timeout=30) as response:
                       return json.load(response)
               except urllib.error.HTTPError as error:
+                  try:
+                      code = json.load(error).get("code")
+                  except Exception:
+                      code = None
+                  known = {"incorrect_password", "invalid_username", "invalid_email", "rest_not_logged_in", "application_passwords_disabled", "application_passwords_disabled_for_user", "rest_forbidden", "rest_forbidden_context"}
+                  print("Reason: " + (code if code in known else "unclassified"), flush=True)
                   raise SystemExit("WordPress returned HTTP " + str(error.code)) from None
               except Exception:
                   raise SystemExit("WordPress connection or response failed.") from None
