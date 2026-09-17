@@ -343,10 +343,22 @@ function movePaddle(clientX) {
   paddle.x = Math.max(0, Math.min(canvas.clientWidth - paddle.w, worldX - paddle.w / 2));
   if (!running && image) ball.x = paddle.x + paddle.w / 2;
 }
-canvas.addEventListener('pointermove', e => movePaddle(e.clientX));
+canvas.addEventListener('pointermove', e => {
+  if (e.isPrimary !== false) movePaddle(e.clientX);
+});
 canvas.addEventListener('pointerdown', e => {
-  movePaddle(e.clientX);
-  if (image && !gameOver) { running = true; statusEl.textContent = '破壊中'; startLoop(); }
+  if (e.isPrimary !== false) {
+    e.preventDefault();
+    canvas.setPointerCapture?.(e.pointerId);
+    movePaddle(e.clientX);
+    if (image && !gameOver) { running = true; statusEl.textContent = '破壊中'; startLoop(); }
+  }
+});
+canvas.addEventListener('pointerup', e => {
+  if (canvas.hasPointerCapture?.(e.pointerId)) canvas.releasePointerCapture(e.pointerId);
+});
+canvas.addEventListener('pointercancel', e => {
+  if (canvas.hasPointerCapture?.(e.pointerId)) canvas.releasePointerCapture(e.pointerId);
 });
 input.addEventListener('change', e => { const file = e.target.files[0]; if (!file) return; const img = new Image(); img.onload = () => loadImage(img); img.src = URL.createObjectURL(file); });
 demoButton.addEventListener('click', () => { const c = document.createElement('canvas'); c.width = 1200; c.height = 700; const x = c.getContext('2d'); const g = x.createLinearGradient(0, 0, 1200, 700); g.addColorStop(0, '#5227a8'); g.addColorStop(1, '#ff7b54'); x.fillStyle = g; x.fillRect(0, 0, c.width, c.height); x.fillStyle = 'rgba(255,255,255,.8)'; x.font = 'bold 130px system-ui'; x.fillText('BREAK', 130, 320); x.fillStyle = '#c7ff4d'; x.font = 'bold 100px system-ui'; x.fillText('FRAME', 480, 500); const img = new Image(); img.onload = () => loadImage(img); img.src = c.toDataURL(); });
