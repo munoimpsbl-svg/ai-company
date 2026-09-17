@@ -1,0 +1,85 @@
+name: P004 SNOS334 reading layout
+on:
+  workflow_dispatch:
+permissions: {}
+jobs:
+  polish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - name: Polish SNOS334 reading layout
+        env:
+          WP_USER: ${{ secrets.P004_WORDPRESS_USERNAME }}
+          WP_PASSWORD: ${{ secrets.P004_WORDPRESS_APP_PASSWORD }}
+        shell: python
+        run: |
+          import base64,json,os,re,urllib.request,urllib.error
+          class NoRedirect(urllib.request.HTTPRedirectHandler):
+              def redirect_request(self,*args,**kwargs): return None
+          opener=urllib.request.build_opener(NoRedirect())
+          auth=base64.b64encode((os.environ["WP_USER"].strip()+":"+os.environ["WP_PASSWORD"].strip()).encode()).decode()
+          def api(path,data=None):
+              req=urllib.request.Request("https://www.munoimp.com/wp-json/wp/v2/"+path,data=None if data is None else json.dumps(data).encode(),headers={"Authorization":"Basic "+auth,"Content-Type":"application/json"})
+              try:
+                  with opener.open(req,timeout=40) as response:return json.load(response)
+              except urllib.error.HTTPError as e:raise SystemExit("WordPress HTTP "+str(e.code)) from None
+          marker="ZZ_READING_LAYOUT_20260917"
+          selectors={851:".zz-actress-851"}
+          plans=[]
+          for pid,scope in selectors.items():
+              path="posts/"+str(pid)
+              p=api(path+"?context=edit"); raw=p["content"]["raw"]
+              assert p["status"]=="publish"
+              if marker in raw:continue
+              assert 'class="hero"' in raw and "30秒で結論" in raw
+              edited=raw
+              targets=[("30秒で結論","zz-summary","結論"),("作品情報","zz-facts","作品情報")]
+              for label,anchor,navlabel in targets:
+                  pattern=r'<h2\b([^>]*)>'+re.escape(label)+r'</h2>'
+                  edited,n=re.subn(pattern,lambda m:'<h2'+m[1]+' id="'+anchor+'">'+label+'</h2>',edited,count=1)
+                  assert n==1,"Heading mismatch"
+              pattern=r'<h2\b([^>]*)>([^<]*よくある質問)</h2>'
+              edited,n=re.subn(pattern,lambda m:'<h2'+m[1]+' id="zz-faq">'+m[2]+'</h2>',edited,count=1)
+              assert n==1,"FAQ mismatch"
+              nav='<nav class="zz-reading-nav" aria-label="記事の目次"><a href="#zz-summary">結論を読む</a><a href="#zz-facts">作品情報</a><a href="#zz-faq">よくある質問</a></nav><p class="zz-data-note">掲載の評価・レビュー件数・順位は取得時点のデータです。リアルタイム更新ではありません。独自スコアは公式評価とは異なる集計指標です。</p>'
+              edited,n=re.subn(r'(<section\b[^>]*class="hero"[^>]*>.*?</section>)',lambda m:m[1]+nav,edited,count=1,flags=re.S)
+              assert n==1,"Hero mismatch"
+              rules={
+          "":"max-width:1040px!important;margin:0 auto!important;padding:32px!important;line-height:1.9!important",
+          " .hero":"grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr)!important;align-items:start!important;gap:32px!important;padding-bottom:28px!important;border-bottom:1px solid #47343e",
+          " .hero>p:empty":"display:none!important",
+          " .hero>p:has(>br:only-child)":"display:none!important",
+          " .hero>div":"min-width:0!important",
+          " .hero>.title, .IGNORE":"min-width:0",
+          " .hero .title":"font-size:clamp(25px,2.3vw,34px)!important;line-height:1.55!important;margin:12px 0 20px!important;letter-spacing:0!important;overflow-wrap:anywhere",
+          " .hero .code":"font-size:16px!important;display:block!important;color:#e5acbd!important;letter-spacing:.06em!important;margin-top:12px",
+          " p":"line-height:1.95!important",
+          " h2":"font-size:25px!important;line-height:1.5!important;scroll-margin-top:32px",
+          " h3":"font-size:20px!important;line-height:1.6!important",
+          " .panel":"padding:26px!important;margin:28px 0!important;border-color:#46333d!important",
+          " .score":"padding:26px!important;border-color:#46333d!important",
+          " table":"width:100%!important;border-collapse:collapse!important",
+          " td":"padding:12px 14px!important;line-height:1.75!important",
+          " .metrics":"gap:10px!important",
+          " .metric":"padding:14px!important",
+          " .zz-reading-nav":"display:flex;flex-wrap:wrap;gap:10px;padding:22px 0 12px",
+          " .zz-reading-nav a":"display:flex;align-items:center;min-height:44px;padding:9px 16px;border:1px solid #765363;border-radius:6px;color:#fff!important;text-decoration:none!important;background:#241923;font-size:14px;font-weight:700",
+          " .zz-reading-nav a:hover":"background:#3c2532",
+          " a:focus-visible":"outline:3px solid #ffc1d5!important;outline-offset:4px",
+          " .zz-data-note":"color:#cfc0c8!important;font-size:13px!important;line-height:1.8!important;margin:0 0 26px!important;max-width:76ch",
+          " ol li":"padding:10px 0!important;border-bottom:1px solid #332731;line-height:1.8!important"}
+              css="".join(scope+k+"{"+v+"}" for k,v in rules.items() if "IGNORE" not in k)
+              css+="@media(max-width:700px){"+scope+"{padding:18px 16px!important}"+scope+" .hero{grid-template-columns:1fr!important;gap:18px!important}"+scope+" .hero>img{max-width:460px!important;margin-inline:auto!important}"+scope+" .hero .title{font-size:26px!important;line-height:1.6!important}"+scope+" h2{font-size:23px!important}"+scope+" .panel,"+scope+" .score{padding:18px!important}"+scope+" .metrics,"+scope+" .cards{grid-template-columns:repeat(2,minmax(0,1fr))!important}"+scope+" .zz-reading-nav{gap:8px}"+scope+" .zz-reading-nav a{font-size:13px;padding:9px 12px}"+scope+" td{padding:10px!important}"+scope+" .metric{font-size:13px!important;min-width:0;overflow-wrap:anywhere}}"
+              edited+="\n<!-- "+marker+" --><style>"+css+"</style>\n"
+              assert re.findall(r'<img\b[^>]*>',raw)==re.findall(r'<img\b[^>]*>',edited),"Image markup changed"
+              plans.append((path,raw,edited))
+          for path,raw,edited in plans:
+              rev=api(path+"/revisions?context=edit&per_page=5")
+              assert any(r.get("content",{}).get("raw")==raw for r in rev),"Revision backup missing: "+path
+          for path,raw,edited in plans:
+              assert api(path+"?context=edit")["content"]["raw"]==raw,"Concurrent edit: "+path
+              api(path,{"content":edited})
+              assert api(path+"?context=edit")["content"]["raw"]==edited,"Save mismatch: "+path
+              print("PASS: "+path+" saved and verified",flush=True)
+          with open(os.environ["GITHUB_STEP_SUMMARY"],"a") as f:f.write("## Reading polish: PASS\n\nSNOS334 anchor navigation, data note and responsive text layout updated. Existing article text and image URLs preserved. Original content verified in WordPress revisions. Saved content read back.\n")
+          
